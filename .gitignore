@@ -9,5 +9,7 @@
 
 # rspec failure tracking
 .rspec_status
+
+#sublime
 .sublime-project
 .sublime-workspace
