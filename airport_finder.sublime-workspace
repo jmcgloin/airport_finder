@@ -1,0 +1,539 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"socil",
+				"social-icon-container"
+			],
+			[
+				"stud",
+				"student-info"
+			],
+			[
+				"student",
+				"student_info"
+			],
+			[
+				"pl",
+				"player_2"
+			],
+			[
+				"win",
+				"WIN_COMBINATIONS"
+			],
+			[
+				"list",
+				"list_songs_by_genre"
+			],
+			[
+				"list_songs",
+				"list_songs_by_genre"
+			],
+			[
+				"ar",
+				"artist_name"
+			],
+			[
+				"file",
+				"file_info"
+			],
+			[
+				"find",
+				"find_or_create_by_name"
+			],
+			[
+				"Dir",
+				"Dir\tDir[\"..\"]"
+			],
+			[
+				"proje",
+				"projects"
+			],
+			[
+				"am",
+				"amount"
+			],
+			[
+				"Tra",
+				"TriangleError"
+			],
+			[
+				"Trian",
+				"TriangleError"
+			],
+			[
+				"Tr",
+				"TraingleError"
+			],
+			[
+				"la",
+				"last_name"
+			],
+			[
+				"wh",
+				"wheel_number"
+			],
+			[
+				"app",
+				"appointments"
+			],
+			[
+				"pat",
+				"patient"
+			],
+			[
+				"ge",
+				"genre"
+			],
+			[
+				"gen",
+				"genres"
+			],
+			[
+				"hand",
+				"handleRemoveAll"
+			],
+			[
+				"new",
+				"newOption"
+			],
+			[
+				"newOpti",
+				"newOptionValue"
+			],
+			[
+				"Inde",
+				"IndecisionApp"
+			],
+			[
+				"Ind",
+				"IndecisionApp"
+			],
+			[
+				"tal",
+				"TalentedPerson"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"get",
+				"getGreeting"
+			],
+			[
+				"cons",
+				"constructor"
+			],
+			[
+				"is",
+				"isVisible"
+			],
+			[
+				"button",
+				"buttonText"
+			],
+			[
+				"deci",
+				"decisionBtn"
+			],
+			[
+				"render",
+				"renderIndApp"
+			],
+			[
+				"rende",
+				"renderIndApp"
+			],
+			[
+				"rend",
+				"renderIndApp"
+			],
+			[
+				"mul",
+				"multiplyBy"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "",
+			"file": "/airport-finder.sublime-project",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"new file",
+				"File: New File Relative to Current View"
+			],
+			[
+				"new folder",
+				"File: New Folder Relative to Current View"
+			],
+			[
+				"ren",
+				"Rename File"
+			],
+			[
+				"move",
+				"File: Move"
+			],
+			[
+				"new",
+				"File: New Folder Relative to Current View"
+			],
+			[
+				"new fol",
+				"File: New Folder Relative to Current View"
+			],
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"syntax ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"project",
+				"Project: Close"
+			],
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"babel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"jsx",
+				"Set Syntax: JSX"
+			],
+			[
+				"close  pr",
+				"Project: Close"
+			],
+			[
+				"new file root",
+				"File: New File Relative to Project Root"
+			],
+			[
+				"new  file",
+				"File: New File Relative to Project Root"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"new fold",
+				"File: New Folder Relative to Project Root"
+			],
+			[
+				"Snippet: ",
+				"Snippet: script"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"newfil",
+				"File: New File Relative to Project Root"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 150.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder"
+	],
+	"file_history":
+	[
+		"/home/jason/learning-dev/learn-co/cli-project/final_project/Gemfile",
+		"/home/jason/learning-dev/learn-co/cli-project/worlds-best-restaurants-cli-gem/bin/worlds-best-restaurants",
+		"/home/jason/learning-dev/learn-co/cli-project/final_project/bin/airport-finder",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/music_library_controller.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/oo-student-scraper-online-web-pt-051319/lib/command_line_interface.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/oo-student-scraper-online-web-pt-051319/fixtures/student-site/index.html",
+		"/home/jason/learning-dev/learn-co/cli-project/oo-student-scraper-online-web-pt-051319/lib/scraper.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/oo-student-scraper-online-web-pt-051319/fixtures/student-site/students/joe-burgess.html",
+		"/home/jason/learning-dev/learn-co/cli-project/oo-student-scraper-online-web-pt-051319/lib/student.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ttt-with-ai-project-online-web-pt-051319/bin/tictactoe",
+		"/home/jason/learning-dev/learn-co/cli-project/ttt-with-ai-project-online-web-pt-051319/lib/players/human.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ttt-with-ai-project-online-web-pt-051319/config/environment.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/music_importer.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/song.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/concerns/modules.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/genre.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/artist.rb",
+		"/home/jason/learning-dev/learn-co/challenges/dog.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-collaborating-objects-lab-online-web-pt-051319/lib/mp3_importer.rb",
+		"/home/jason/learning-dev/learn-co/challenges/longest.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/config/environment.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/.keep",
+		"/home/jason/learning-dev/learn-co/ruby-scraping/scraping-kickstarter-online-web-pt-051319/kickstarter_scraper.rb",
+		"/home/jason/learning-dev/learn-co/ruby-scraping/scraping-flatiron-code-along-online-web-pt-051319/lib/scraper.rb",
+		"/home/jason/learning-dev/learn-co/ruby-scraping/scraping-flatiron-code-along-online-web-pt-051319/lib/course.rb",
+		"/home/jason/learning-dev/learn-co/ruby-scraping/sandbox/scraping.rb",
+		"/home/jason/learning-dev/learn-co/ruby-scraping/using-bundler-online-web-pt-051319/config/environment.rb",
+		"/home/jason/learning-dev/learn-co/ruby-scraping/using-bundler-online-web-pt-051319/bin/run.rb",
+		"/home/jason/learning-dev/learn-co/ruby-scraping/using-bundler-online-web-pt-051319/Gemfile",
+		"/home/jason/learning-dev/learn-co/challenges/palindrome.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/peer-banking/oo-banking-online-web-pt-051319/spec/transfer_spec.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/peer-banking/oo-banking-online-web-pt-051319/lib/bank_account.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/peer-banking/oo-banking-online-web-pt-051319/lib/transfer.rb",
+		"/home/jason/learning-dev/learn-co/ruby-metaprogramming/triangle-classification-online-web-pt-051319/lib/triangle.rb",
+		"/home/jason/learning-dev/learn-co/ruby-metaprogramming/oo-custom-errors-online-web-pt-051319/custom_errors.rb",
+		"/home/jason/learning-dev/learn-co/ruby-metaprogramming/mass-assignment-online-web-pt-051319/spec/person_spec.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/artist-song-modules-online-web-pt-051319/lib/artist.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/artist-song-modules-online-web-pt-051319/lib/song.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/artist-song-modules-online-web-pt-051319/lib/concerns/findable.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/artist-song-modules-online-web-pt-051319/lib/concerns/memorable.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/artist-song-modules-online-web-pt-051319/lib/concerns/paramable.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/artist-song-modules-online-web-pt-051319/config/environment.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/artist-song-modules-online-web-pt-051319/lib/concerns.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/modules-reading-online-web-pt-051319/lib/class_methods_module.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/modules-reading-online-web-pt-051319/lib/dance_module.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/modules-reading-online-web-pt-051319/lib/dancer.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/modules-reading-online-web-pt-051319/lib/fancy_dance.rb",
+		"/home/jason/learning-dev/learn-co/ruby-modules/modules-reading-online-web-pt-051319/lib/kid.rb",
+		"/home/jason/learning-dev/learn-co/ruby-object-architecture/ruby-super-inheritance-lab-online-web-pt-051319/lib/chatty_student.rb",
+		"/home/jason/learning-dev/learn-co/ruby-object-architecture/ruby-super-inheritance-lab-online-web-pt-051319/lib/student.rb",
+		"/home/jason/learning-dev/learn-co/ruby-object-architecture/oo-inheritance-code-along-online-web-pt-051319/lib/car.rb",
+		"/home/jason/learning-dev/learn-co/ruby-object-architecture/oo-inheritance-code-along-online-web-pt-051319/lib/vehicle.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-through-lab-online-web-pt-051319/lib/appointment.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-through-lab-online-web-pt-051319/lib/doctor.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-through-lab-online-web-pt-051319/lib/patient.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-through-lab-online-web-pt-051319/lib/artist.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-through-lab-online-web-pt-051319/lib/genre.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-through-lab-online-web-pt-051319/lib/song.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-banking-online-web-pt-051319/lib/transfer.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-banking-online-web-pt-051319/lib/bank_account.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-kickstarter-online-web-pt-051319/lib/project.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-kickstarter-online-web-pt-051319/lib/backer.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-my-pets-online-web-pt-051319/lib/owner.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-my-pets-online-web-pt-051319/lib/fish.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-my-pets-online-web-pt-051319/lib/dog.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/oo-my-pets-online-web-pt-051319/lib/cat.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-lab-v-000/lib/song.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-lab-v-000/lib/artist.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-lab-v-000/lib/post.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-has-many-lab-v-000/lib/author.rb",
+		"/home/jason/learning-dev/learn-co/challenges/challenge.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-belong-to-lab-online-web-pt-051319/lib/song.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-belong-to-lab-online-web-pt-051319/lib/post.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-belong-to-lab-online-web-pt-051319/lib/author.rb",
+		"/home/jason/learning-dev/learn-co/ruby-ob-relation/ruby-objects-belong-to-lab-online-web-pt-051319/lib/artist.rb",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/projects/indecision-app/source/app.js",
+		"/home/jason/.config/sublime-text-3/Packages/User/react/react-class.sublime-snippet",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/projects/indecision-app/playground/old-app.js",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/projects/indecision-app/playground/build-it-visible.js",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/projects/indecision-app/playground/es6-classes-one.js",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/projects/indecision-app/.gitignore",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/projects/indecision-app/public/scripts/app.js",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/indecision-app/projects/public/style.css",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/indecision-app/projects/public/scripts/app.js",
+		"/home/jason/learning-dev/udemy-courses/react-2nd-edition/indecision-app/projects/public/index.html",
+		"/home/jason/.config/sublime-text-3/Packages/User/html/script.sublime-snippet",
+		"/home/jason/.config/sublime-text-3/Packages/Color Highlighter/ColorHighlighter.sublime-settings"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/airport-finder.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 120.0
+	},
+	"pinned_build_system": "",
+	"project": "airport_finder.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 303.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
