@@ -47,6 +47,20 @@ class AirportFinder::CLI
 
 	def locate_airport
 		puts "locating"
+
+		#TODO-NEXT
+		#what to do here......
+		#ask for the city/state or zip code or airport identifier? (will i use this? if there's time?)
+		#hand off to the scraper to get the information
+		#if the data comes back good
+			#show the list of possible airports to view
+			#gets choice to choose and airport or try the search again
+		#else whoops and gives chance to try again
+		#user chooses an airport
+		#new airport -> new runway, new fsbo
+
+		#maybe a choice showing current airports (those in Airport.all) to choose from without scraping again?
+
 	end
 
 	def plan_route
