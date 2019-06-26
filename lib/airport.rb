@@ -13,6 +13,16 @@ class Airport
 			owner_manager is a hash
 		=end
 
+
+
+	end
+
+	def self.all
+		@@all
+	end
+
+	def create_from_scrape(airport_data) #maybe change data when you get a better idea of what the data looks like
+		
 	end
 
 end
