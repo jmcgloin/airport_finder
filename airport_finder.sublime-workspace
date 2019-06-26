@@ -160,13 +160,38 @@
 	"buffers":
 	[
 		{
-			"contents": "",
-			"file": "/airport-finder.sublime-project",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 158,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/environment.rb",
+			"settings":
+			{
+				"buffer_size": 157,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bin/airport-finder",
+			"settings":
+			{
+				"buffer_size": 74,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/cli.rb",
+			"settings":
+			{
+				"buffer_size": 14,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -184,7 +209,11 @@
 		[
 			[
 				"new file",
-				"File: New File Relative to Current View"
+				"File: New File Relative to Project Root"
+			],
+			[
+				"rena",
+				"Rename File"
 			],
 			[
 				"new folder",
@@ -291,12 +320,15 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jason/learning-dev/learn-co/cli-project/airport_finder"
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/bin",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib"
 	],
 	"file_history":
 	[
-		"/home/jason/learning-dev/learn-co/cli-project/final_project/Gemfile",
 		"/home/jason/learning-dev/learn-co/cli-project/worlds-best-restaurants-cli-gem/bin/worlds-best-restaurants",
+		"/airport-finder.sublime-project",
+		"/home/jason/learning-dev/learn-co/cli-project/final_project/Gemfile",
 		"/home/jason/learning-dev/learn-co/cli-project/final_project/bin/airport-finder",
 		"/home/jason/learning-dev/learn-co/cli-project/ruby-music-library-cli-online-web-pt-051319/lib/music_library_controller.rb",
 		"/home/jason/learning-dev/learn-co/cli-project/oo-student-scraper-online-web-pt-051319/lib/command_line_interface.rb",
@@ -416,35 +448,121 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/airport-finder.sublime-project",
+					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 158,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								122,
+								122
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/environment.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								156,
+								156
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "bin/airport-finder",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 74,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/cli.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10,
+								10
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

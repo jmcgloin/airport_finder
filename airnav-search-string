@@ -1,3 +1,22 @@
 place=44313&airportid=&lat=&NS=N&lon=&EW=W&fieldtypes=a&use=u&iap=0&length=&fuel=0&mindistance=0&maxdistance=20&distanceunits=nm
 
 http://www.airnav.com/cgi-bin/airport-search?place=44313&airportid=&lat=&NS=N&lon=&EW=W&fieldtypes=a&use=u&iap=0&length=&fuel=0&mindistance=0&maxdistance=20&distanceunits=nm
+
+&airportid= USE
+&lat=&NS=N DON'T USE
+&lon=&EW=W DON'T USE
+&fieldtypes=a //airport USE
+&fieldtypes=b //balloon USE
+&fieldtypes=g //glider USE
+&fieldtypes=h //heliport USE
+&fieldtypes=c //seaplane USE
+&fieldtypes=u //ultralight USE
+&use=u //public  ONLY SEARCH FOR PUBLIC
+&use=r //private
+&use=m //military
+&iap=0
+&length=
+&fuel=0
+&mindistance=0 USE
+&maxdistance=20 USE
+&distanceunits=nm DEFAULT

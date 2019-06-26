@@ -1,0 +1,3 @@
+class Arrival < Airport
+
+end

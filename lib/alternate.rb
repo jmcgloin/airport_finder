@@ -1,0 +1,3 @@
+class Alternate < Airport
+
+end
