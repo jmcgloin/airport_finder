@@ -50,7 +50,7 @@ class AirportFinder::CLI
 
 		#TODO-NEXT
 		#what to do here......
-		#ask for the city/state or zip code or airport identifier? (will i use this? if there's time?)
+		#X ask for the city/state or zip code or airport identifier? (will i use this? if there's time?)
 		#hand off to the scraper to get the information
 		#if the data comes back good
 			#show the list of possible airports to view
@@ -61,6 +61,59 @@ class AirportFinder::CLI
 
 		#maybe a choice showing current airports (those in Airport.all) to choose from without scraping again?
 
+		ok_one = false
+		ok_two = false
+		place = ""
+		radius = 20
+
+		while !ok_one do
+			puts "\nPlease enter the city and state OR the zip code to search"
+			puts "Example: 'Albuquerque, New Mexico'; Example: '90210'"
+
+			place = gets.strip
+
+			puts "\nYou entered #{place}.  Is this ok? Enter 'y' or 'n'"
+
+			ok_one = ok?
+
+		end
+
+		while !ok_two do
+
+			puts "\nPlease enter the maximum search radius in nm"
+			puts "Or press enter to accept the default of 20nm"
+			puts "Max radius is 200nm"
+
+			entry = gets.strip
+
+			if entry == "" || entry == "0"
+				radius = 20
+				puts "\nYou entered #{radius}.  Is this ok? Enter 'y' or 'n'"
+				ok_two = ok?
+			elsif entry.to_i != 0
+				radius = [entry.to_i, 200].min
+				puts "\nSearch radius is #{radius}nm. Is this ok? Enter 'y' or 'n'"
+				ok_two = ok?
+			else
+				puts "\nWhoops!  I don't understand that.  Let's try again."
+			end
+				
+		end
+
+	end
+
+	def ok?
+		ok = gets.strip.downcase
+
+			case ok
+			when 'y'
+				return true
+			when 'n'
+				return false
+			else
+				puts "\nWhoops!  I don't understand that.  Let's try again."
+				return false
+			end
 	end
 
 	def plan_route
