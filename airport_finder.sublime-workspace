@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ok",
+				"ok_one"
+			],
+			[
 				"socil",
 				"social-icon-container"
 			],
@@ -160,15 +164,6 @@
 	"buffers":
 	[
 		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 158,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "lib/environment.rb",
 			"settings":
 			{
@@ -181,7 +176,7 @@
 			"file": "bin/airport-finder",
 			"settings":
 			{
-				"buffer_size": 74,
+				"buffer_size": 90,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -190,7 +185,88 @@
 			"file": "lib/cli.rb",
 			"settings":
 			{
-				"buffer_size": 14,
+				"buffer_size": 2764,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/airport.rb",
+			"settings":
+			{
+				"buffer_size": 476,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "airnav-search-string",
+			"settings":
+			{
+				"buffer_size": 698,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/route.rb",
+			"settings":
+			{
+				"buffer_size": 16,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/departure.rb",
+			"settings":
+			{
+				"buffer_size": 30,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/arrival.rb",
+			"settings":
+			{
+				"buffer_size": 28,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/runway.rb",
+			"settings":
+			{
+				"buffer_size": 17,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/alternate.rb",
+			"settings":
+			{
+				"buffer_size": 30,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/scraper.rb",
+			"settings":
+			{
+				"buffer_size": 18,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/fsbo.rb",
+			"settings":
+			{
+				"buffer_size": 15,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -208,8 +284,12 @@
 		"selected_items":
 		[
 			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
 				"new file",
-				"File: New File Relative to Project Root"
+				"File: New File Relative to Current View"
 			],
 			[
 				"rena",
@@ -234,10 +314,6 @@
 			[
 				"new fol",
 				"File: New Folder Relative to Current View"
-			],
-			[
-				"ruby",
-				"Set Syntax: Ruby"
 			],
 			[
 				"syntax ruby",
@@ -326,6 +402,8 @@
 	],
 	"file_history":
 	[
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/cli.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/.gitignore",
 		"/home/jason/learning-dev/learn-co/cli-project/worlds-best-restaurants-cli-gem/bin/worlds-best-restaurants",
 		"/airport-finder.sublime-project",
 		"/home/jason/learning-dev/learn-co/cli-project/final_project/Gemfile",
@@ -448,39 +526,11 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": ".gitignore",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 158,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								122,
-								122
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "lib/environment.rb",
 					"semi_transient": false,
 					"settings":
@@ -492,8 +542,8 @@
 						"selection":
 						[
 							[
-								156,
-								156
+								127,
+								127
 							]
 						],
 						"settings":
@@ -504,24 +554,226 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "bin/airport-finder",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 74,
+						"buffer_size": 90,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								74,
-								74
+								90,
+								90
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/cli.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2764,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2372,
+								2372
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/airport.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								466,
+								466
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "airnav-search-string",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 698,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								304,
+								304
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/route.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16,
+								16
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "lib/departure.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 30,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								30,
+								30
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "lib/arrival.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 28,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28,
+								28
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/runway.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
 							]
 						],
 						"settings":
@@ -537,20 +789,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "lib/cli.rb",
+					"buffer": 9,
+					"file": "lib/alternate.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14,
+						"buffer_size": 30,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10,
-								10
+								30,
+								30
 							]
 						],
 						"settings":
@@ -563,6 +815,64 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "lib/scraper.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14,
+								14
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "lib/fsbo.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15,
+								15
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
 					"type": "text"
 				}
 			]
