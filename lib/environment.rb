@@ -6,3 +6,4 @@ module AirportFinder
 end
 
 require_relative "./cli"
+require_relative "./utility"

@@ -2,6 +2,10 @@ class AirportFinder::CLI
 
 	def call
 
+		@place = ""
+		@radius = 20
+		self.choice = nil
+
 		welcome
 
 	end
@@ -13,15 +17,13 @@ class AirportFinder::CLI
 			#look into  colors for the text if theres time
 			puts "\nWelcome to Airport Finder!"
 			
-			menu
+			main_menu
 
 	end
 
-	def menu
+	def main_menu
 
-		choice = nil
-
-		while choice != 'exit' do
+		while self.choice != 'exit' do
 
 			puts "\nWhat would you like to do?"
 			puts "Please select from the following choices:"
@@ -39,7 +41,7 @@ class AirportFinder::CLI
 			when "exit"
 				exit
 			else
-				puts "\nWhoops! I don't understand that.  Lets try again"
+				self.whoops
 			end
 
 		end
@@ -51,28 +53,25 @@ class AirportFinder::CLI
 		#TODO-NEXT
 		#what to do here......
 		#X ask for the city/state or zip code or airport identifier? (will i use this? if there's time?)
-		#hand off to the scraper to get the information
-		#if the data comes back good
-			#show the list of possible airports to view
-			#gets choice to choose and airport or try the search again
-		#else whoops and gives chance to try again
+		#hand off to Search to get the info from the scraper if it doesn't already exist
+		#Search should return the first round search (matches within radius) or return nil if no matches
+		#if there are matches:
+		#cli should display the matches and ask for next round of input
+		#else, ask for new input (give option to quit)
 		#user chooses an airport
-		#new airport -> new runway, new fsbo
-
-		#maybe a choice showing current airports (those in Airport.all) to choose from without scraping again?
+		#hand off aiport to Airport which will return airport info to display
+		#ask what info is wanted, give option to see charts
 
 		ok_one = false
 		ok_two = false
-		place = ""
-		radius = 20
 
 		while !ok_one do
 			puts "\nPlease enter the city and state OR the zip code to search"
 			puts "Example: 'Albuquerque, New Mexico'; Example: '90210'"
 
-			place = gets.strip
+			self.place = gets.strip #sanatize this
 
-			puts "\nYou entered #{place}.  Is this ok? Enter 'y' or 'n'"
+			puts "\nYou entered #{self.place}.  Is this ok? Enter 'y' or 'n'"
 
 			ok_one = ok?
 
@@ -82,38 +81,28 @@ class AirportFinder::CLI
 
 			puts "\nPlease enter the maximum search radius in nm"
 			puts "Or press enter to accept the default of 20nm"
-			puts "Max radius is 200nm"
+			puts "Min radius is 1nm. Max radius is 200nm"
 
 			entry = gets.strip
 
 			if entry == "" || entry == "0"
 				radius = 20
-				puts "\nYou entered #{radius}.  Is this ok? Enter 'y' or 'n'"
+				puts "\nSearch radius is #{radius}nm.  Is this ok? Enter 'y' or 'n'"
 				ok_two = ok?
 			elsif entry.to_i != 0
 				radius = [entry.to_i, 200].min
 				puts "\nSearch radius is #{radius}nm. Is this ok? Enter 'y' or 'n'"
 				ok_two = ok?
 			else
-				puts "\nWhoops!  I don't understand that.  Let's try again."
+				self.whoops
 			end
 				
 		end
 
-	end
+		airport_menu(Search.find_or_create(self.place, radius))
+		#this returns the search which will contain the info on the matches in array
+		#i.e. an array of airport objects
 
-	def ok?
-		ok = gets.strip.downcase
-
-			case ok
-			when 'y'
-				return true
-			when 'n'
-				return false
-			else
-				puts "\nWhoops!  I don't understand that.  Let's try again."
-				return false
-			end
 	end
 
 	def plan_route
@@ -133,6 +122,56 @@ class AirportFinder::CLI
 
 		puts "\n#{goodbyes.shuffle[0]}\n\n"
 
+	end
+
+	def airport_menu(airport_matches)
+		if airport_matches.length == 0
+			puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
+			puts "Would you like to try again? Enter 'y' for yes or 'n' for no."
+		end
+	end
+
+	def ok?
+		ok = gets.strip.downcase
+
+			case ok
+			when 'y'
+				return true
+			when 'n'
+				return false
+			else
+				self.whoops
+				return false
+			end
+	end
+
+	def whoops
+		puts "\nWhoops!  I don't understand that.  Let's try again."
+	end
+
+	def choice=(choice)
+		@choice = choice
+	end
+
+	def choice
+		@choice
+	end
+
+	def place=(place = "")
+		@place = place
+	end
+
+	def place
+		@place
+	end
+
+	def radius=(radius = 20)
+		@radius = [radius.to_i, 1].max
+		@radius = [@radius, 200].min
+	end
+
+	def radius
+		@radius
 	end
 
 end

@@ -20,7 +20,10 @@ class Search
 
 		#if there is a past search tha meets the criteria, return it
 		#if not, new search, call scraper, populate search results, and save to all
-		past_search || Search.new(place, radius).tap{ |new_search|  self.class.all << new_search }
+		if past_search
+			past_search
+		else
+			Search.new(place, radius).tap{ |new_search|  self.class.all << new_search }
 
 	end
 
