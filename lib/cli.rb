@@ -31,9 +31,9 @@ class AirportFinder::CLI
 			puts "2: Plan a route between two airports"
 			puts "Enter the number of your choice or type 'exit' to exit."
 
-			choice = gets.strip
+			self.choice = gets.strip
 
-			case choice
+			case self.choice
 			when "1"
 				locate_airport
 			when "2"
@@ -71,6 +71,8 @@ class AirportFinder::CLI
 
 			self.place = gets.strip #sanatize this
 
+			#maybe add a break to catch if 'exit' is entered in here
+
 			puts "\nYou entered #{self.place}.  Is this ok? Enter 'y' or 'n'"
 
 			ok_one = ok?
@@ -96,13 +98,42 @@ class AirportFinder::CLI
 			else
 				self.whoops
 			end
+
+			#maybe add a break to catch if 'exit' is entered in here
 				
 		end
-
-		airport_menu(Search.find_or_create(self.place, radius))
+		airport_menu([])
+		# airport_menu(%w(a1, a2, a3, a4, a5))
+		# airport_menu(Search.find_or_create(self.place, radius)) this needs to get wired up
 		#this returns the search which will contain the info on the matches in array
 		#i.e. an array of airport objects
 
+	end
+
+	def airport_menu(airport_matches)
+		count = airport_matches.length
+		if count == 0
+			puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
+			puts "Would you like to try again? Enter 'y' for yes or 'n' for no."
+
+			continue = gets.strip.downcase
+
+			case continue
+			when 'y'
+				locate_airport
+			when 'n'
+				nil
+			else
+				self.whoops
+			end
+		else
+			puts "Here are your matches"
+			airport_matches.each.with_index(1){ |match, i| puts "#{i}: #{match}"}
+			# this will also diplay airport identifier, name, distance, and use?
+			#next is to ask to select which airport to learn more about
+			#get info from Airport object
+				
+		end
 	end
 
 	def plan_route
@@ -122,13 +153,6 @@ class AirportFinder::CLI
 
 		puts "\n#{goodbyes.shuffle[0]}\n\n"
 
-	end
-
-	def airport_menu(airport_matches)
-		if airport_matches.length == 0
-			puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
-			puts "Would you like to try again? Enter 'y' for yes or 'n' for no."
-		end
 	end
 
 	def ok?
