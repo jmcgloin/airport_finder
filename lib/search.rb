@@ -2,7 +2,9 @@ class Search
 
 	@@all = []
 
-	def initialize(place, radius, )
+	attr_accessor :results
+
+	def initialize(place, radius)
 
 		@place = place
 		@radius = radius
@@ -17,14 +19,17 @@ class Search
 
 		#look for a past search
 		past_search = self.all.detect{ |search| search.place == place && search.radius == radius }
-
-		#if there is a past search tha meets the criteria, return it
-		#if not, new search, call scraper, populate search results, and save to all
-		if past_search
-			past_search
-		else
-			Search.new(place, radius).tap{ |new_search|  self.class.all << new_search }
-
+		past_search || create_new_search(place, radius)
 	end
+
+	def create_new_search(place, radius)
+		new_search = Search.new(place, radius)
+		new_search.results = Scraper.scrape_search_results(place, radius) # 
+		self.all << new_search
+		new_search
+	end
+
+		# airport_menu([])
+		# airport_menu(%w(a1, a2, a3, a4, a5))
 
 end

@@ -15,6 +15,7 @@ class AirportFinder::CLI
 			#TODO-TIME
 			#maybe try to put a logo here if you have time 
 			#look into  colors for the text if theres time
+			system "clear" # add this to a few locations to keep the screen clean TODO-TIME
 			puts "\nWelcome to Airport Finder!"
 			
 			main_menu
@@ -48,7 +49,6 @@ class AirportFinder::CLI
 	end
 
 	def locate_airport
-		puts "locating"
 
 		#TODO-NEXT
 		#what to do here......
@@ -102,11 +102,10 @@ class AirportFinder::CLI
 			#maybe add a break to catch if 'exit' is entered in here
 				
 		end
-		airport_menu([])
-		# airport_menu(%w(a1, a2, a3, a4, a5))
-		# airport_menu(Search.find_or_create(self.place, radius)) this needs to get wired up
+
+		airport_menu(Search.find_or_create(self.place, radius)) this needs to get wired up
 		#this returns the search which will contain the info on the matches in array
-		#i.e. an array of airport objects
+		#i.e. an array of arrays containing airport id, name, and distance from place (maybe more as time permits)
 
 	end
 

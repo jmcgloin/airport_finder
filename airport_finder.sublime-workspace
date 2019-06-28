@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"airp",
+				"airport_menu"
+			],
+			[
+				"down",
+				"downcase"
+			],
+			[
+				"req",
+				"require_relative"
+			],
+			[
+				"past",
+				"past_search"
+			],
+			[
+				"new",
+				"new_search"
+			],
+			[
+				"ra",
+				"radius"
+			],
+			[
 				"ok",
 				"ok_one"
 			],
@@ -100,10 +124,6 @@
 				"handleRemoveAll"
 			],
 			[
-				"new",
-				"newOption"
-			],
-			[
 				"newOpti",
 				"newOptionValue"
 			],
@@ -173,10 +193,18 @@
 			}
 		},
 		{
+			"file": "bin/setup",
+			"settings":
+			{
+				"buffer_size": 131,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "bin/airport-finder",
 			"settings":
 			{
-				"buffer_size": 90,
+				"buffer_size": 87,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -185,7 +213,16 @@
 			"file": "lib/cli.rb",
 			"settings":
 			{
-				"buffer_size": 2764,
+				"buffer_size": 4194,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/search.rb",
+			"settings":
+			{
+				"buffer_size": 562,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -200,73 +237,10 @@
 			}
 		},
 		{
-			"file": "airnav-search-string",
-			"settings":
-			{
-				"buffer_size": 698,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/route.rb",
-			"settings":
-			{
-				"buffer_size": 16,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/departure.rb",
-			"settings":
-			{
-				"buffer_size": 30,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/arrival.rb",
-			"settings":
-			{
-				"buffer_size": 28,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/runway.rb",
-			"settings":
-			{
-				"buffer_size": 17,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/alternate.rb",
-			"settings":
-			{
-				"buffer_size": 30,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "lib/scraper.rb",
 			"settings":
 			{
 				"buffer_size": 18,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/fsbo.rb",
-			"settings":
-			{
-				"buffer_size": 15,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -284,12 +258,12 @@
 		"selected_items":
 		[
 			[
-				"ruby",
-				"Set Syntax: Ruby"
-			],
-			[
 				"new file",
 				"File: New File Relative to Current View"
+			],
+			[
+				"ruby",
+				"Set Syntax: Ruby"
 			],
 			[
 				"rena",
@@ -397,11 +371,18 @@
 	"expanded_folders":
 	[
 		"/home/jason/learning-dev/learn-co/cli-project/airport_finder",
-		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/bin",
 		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib"
 	],
 	"file_history":
 	[
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/utility.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/fsbo.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/alternate.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/runway.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/arrival.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/departure.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/route.rb",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/airnav-search-string",
 		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/lib/cli.rb",
 		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/.gitignore",
 		"/home/jason/learning-dev/learn-co/cli-project/worlds-best-restaurants-cli-gem/bin/worlds-best-restaurants",
@@ -495,7 +476,7 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -509,6 +490,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"choice",
+			"place",
+			"menu",
+			"result"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -526,7 +511,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -542,8 +527,8 @@
 						"selection":
 						[
 							[
-								127,
-								127
+								157,
+								157
 							]
 						],
 						"settings":
@@ -554,24 +539,52 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "bin/airport-finder",
-					"semi_transient": false,
+					"file": "bin/setup",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 90,
+						"buffer_size": 131,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								90,
-								90
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "bin/airport-finder",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 87,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
 							]
 						],
 						"settings":
@@ -583,24 +596,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "lib/cli.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2764,
+						"buffer_size": 4194,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2372,
-								2372
+								3372,
+								3372
 							]
 						],
 						"settings":
@@ -609,14 +622,43 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1887.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
+					"file": "lib/search.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 562,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								551,
+								551
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "lib/airport.rb",
 					"semi_transient": false,
 					"settings":
@@ -641,184 +683,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "airnav-search-string",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 698,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								304,
-								304
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "lib/route.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								16,
-								16
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "lib/departure.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 30,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								30,
-								30
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "lib/arrival.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 28,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								28,
-								28
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "lib/runway.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17,
-								17
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "lib/alternate.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 30,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								30,
-								30
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
+					"buffer": 6,
 					"file": "lib/scraper.rb",
 					"semi_transient": false,
 					"settings":
@@ -843,36 +712,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "lib/fsbo.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15,
-								15
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
