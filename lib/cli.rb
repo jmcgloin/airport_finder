@@ -103,17 +103,15 @@ class AirportFinder::CLI
 				
 		end
 
-		airport_menu(Search.find_or_create(self.place, radius)) this needs to get wired up
-		#this returns the search which will contain the info on the matches in array
-		#i.e. an array of arrays containing airport id, name, and distance from place (maybe more as time permits)
-
+		airport_menu(Search.find_or_create(self.place, radius))
 	end
 
 	def airport_menu(airport_matches)
+		# binding.pry
 		count = airport_matches.length
 		if count == 0
 			puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
-			puts "Would you like to try again? Enter 'y' for yes or 'n' for no."
+			puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
 
 			continue = gets.strip.downcase
 
@@ -122,12 +120,23 @@ class AirportFinder::CLI
 				locate_airport
 			when 'n'
 				nil
+			when ''
+				locate_airport
 			else
 				self.whoops
 			end
 		else
 			puts "Here are your matches"
-			airport_matches.each.with_index(1){ |match, i| puts "#{i}: #{match}"}
+			puts "#: Identifier | Name                                              | Distance(nm)"
+			airport_matches.each.with_index(1) do |match, i|
+				# 1: Identifier | Name                                              | Distance
+				if match[1].length >= 50
+					airport_name = match[1].slice(0,50)
+				else
+					airport_name = match[1] + " " * (50 - match[1].length )
+				end
+				puts "#{i}: #{match[0]}        | #{airport_name}| #{match[2]}"
+			end
 			# this will also diplay airport identifier, name, distance, and use?
 			#next is to ask to select which airport to learn more about
 			#get info from Airport object
@@ -159,6 +168,8 @@ class AirportFinder::CLI
 
 			case ok
 			when 'y'
+				return true
+			when ''
 				return true
 			when 'n'
 				return false

@@ -1,3 +1,5 @@
+require 'pry'
+
 require_relative "./airport_finder/version"
 
 module AirportFinder
@@ -6,3 +8,4 @@ module AirportFinder
 end
 
 require_relative "./cli"
+require_relative "./search"
