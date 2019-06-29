@@ -21,6 +21,10 @@ class Airport
 		@@all
 	end
 
+	def self.find(identifier)
+		self.all.detect{ |airport| airport.identifier == identifier }
+	end
+
 	def create_from_scrape(airport_data) #maybe change data when you get a better idea of what the data looks like
 		
 	end

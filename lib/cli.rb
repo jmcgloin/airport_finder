@@ -5,6 +5,8 @@ class AirportFinder::CLI
 		@place = ""
 		@radius = 20
 		self.choice = nil
+		self.matches = []
+		self.airport = nil
 
 		welcome
 
@@ -48,6 +50,8 @@ class AirportFinder::CLI
 		end
 	end
 
+
+### Begin locate airport chain
 	def locate_airport
 
 		#TODO-NEXT
@@ -103,12 +107,11 @@ class AirportFinder::CLI
 				
 		end
 
-		airport_menu(Search.find_or_create(self.place, radius))
+		self.matches = airport_menu(Search.find_or_create(self.place, radius))
 	end
 
-	def airport_menu(airport_matches)
-		# binding.pry
-		count = airport_matches.length
+	def airport_menu(matches)
+		count = matches.length
 		if count == 0
 			puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
 			puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
@@ -128,7 +131,7 @@ class AirportFinder::CLI
 		else
 			puts "Here are your matches"
 			puts "#: Identifier | Name                                              | Distance(nm)"
-			airport_matches.each.with_index(1) do |match, i|
+			matches.each.with_index(1) do |match, i|
 				# 1: Identifier | Name                                              | Distance
 				if match[1].length >= 50
 					airport_name = match[1].slice(0,50)
@@ -140,10 +143,24 @@ class AirportFinder::CLI
 			# this will also diplay airport identifier, name, distance, and use?
 			#next is to ask to select which airport to learn more about
 			#get info from Airport object
-				
 		end
+		learn_more(matches)
 	end
 
+	def airport_select(matches)
+		puts "Please enter the number of the airport."
+		choice = gets.strip
+		while choice.to_i == 0 do
+			self.whoops # add in a  condition for input of 'exit'
+		end
+
+		airport = Airport.find(matches[choice.to_i - 1][0])
+	end
+
+## End locate airport chain
+
+
+## Begin plan route chain
 	def plan_route
 		puts "planning"
 	end
@@ -179,6 +196,9 @@ class AirportFinder::CLI
 			end
 	end
 
+## End plan route chain
+
+## Instance and class variables/methods below
 	def whoops
 		puts "\nWhoops!  I don't understand that.  Let's try again."
 	end
