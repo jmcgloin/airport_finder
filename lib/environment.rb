@@ -12,3 +12,4 @@ end
 require_relative "./cli"
 require_relative "./search"
 require_relative "./scraper"
+require_relative "./airport"

@@ -2,19 +2,12 @@ class Airport
 
 	@@all = []
 
-	def initialize(identifier, name)# (identifier, runways, fsbos, services, coms, operations, owner_manager)
-		=begin
-			identifier is a string
-			runways is an array of objects
-			fsbos is an array of objects
-			services is a hash
-			coms is a hash
-			operations  is a hash
-			owner_manager is a hash
-		=end
+	attr_accessor :identifier, :name
 
-
-
+	def initialize(identifier, name, details)
+		@identifier = identifier
+		@name = name
+		@details = details
 	end
 
 	def self.all
@@ -25,12 +18,15 @@ class Airport
 		self.all.detect{ |airport| airport.identifier == identifier }
 	end
 
-	def self.find_or_create(identifier, name = nil)
-		self.find(identifier) || Airport.new(identifier, name)
+	def self.find_or_create(identifier, url)
+		ap = (self.all.detect{ |airport| airport.identifier == identifier } || self.create(url))
+		# TODO scrape the airport details and add them
+		# TODO add the 
 	end
 
-	def add_airport_details(details_hash)
-			self.details ||= details_hash
+	def self.create(url)
+		Scraper.new.scrape_airport_info(url)
+		# TODO scrape using the url and create a new aiport object
 	end
 
 end

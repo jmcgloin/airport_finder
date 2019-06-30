@@ -157,8 +157,10 @@ class AirportFinder::CLI
 			self.whoops # add in a  condition for input of 'exit'
 			choice = gets.strip
 		end
-
-		puts matches[choice.to_i - 1][4]
+		# binding.pry
+		# puts matches[choice.to_i - 1][4] # TODO find or create airport
+		airport = matches[choice.to_i - 1]
+		Airport.find_or_create(airport[0], airport[4])
 	end
 
 ## End locate airport chain

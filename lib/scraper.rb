@@ -23,6 +23,15 @@ class Scraper
 
 	end # scrape_search_results
 
+	def scrape_airport_info(url)
+		search_url = "http://www.airnav.com" + url
+		data = get_data(search_url)
+		# details = data.css()
+		# details = doc.css('details').find{|node| node.css('id').text == "5678"}
+		headings = data.css("body > table")[4].css("h3")
+		binding.pry
+	end
+
 	def get_data(url)
 		Nokogiri::HTML(open(url))
 	end
