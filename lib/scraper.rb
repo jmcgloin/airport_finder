@@ -23,12 +23,34 @@ class Scraper
 
 	end # scrape_search_results
 
+
+=begin 
+
+TDOD there looks to be one a for each section.  sort out the sections and  details
+	based on the organization of the a tags
+
+=end
+
+
 	def scrape_airport_info(url)
+		details = {}
 		search_url = "http://www.airnav.com" + url
 		data = get_data(search_url)
-		# details = data.css()
-		# details = doc.css('details').find{|node| node.css('id').text == "5678"}
-		headings = data.css("body > table")[4].css("h3")
+		main_table = data.css("body > table")[4]
+		headings = main_table.css("h3")
+		binding.pry
+		content_table = main_table.css("table")
+		content_table.each.with_index do |tr,  i|
+			details[headings[i + 1].text.to_sym] = {}
+			section = details[headings[i + 1].text.to_sym]
+			tds = tr.css("td")
+			for j in (0..tds.length - 1).step(2) do
+				values = tds[j + 1].children.map{ |child| child.text }.select{ |child| child != "" }
+				section[tds[j].text.to_sym] = values
+				binding.pry if values.include? "95110"
+			end
+			binding.pry
+		end
 		binding.pry
 	end
 
@@ -37,6 +59,8 @@ class Scraper
 	end
 
 end # Scraper
+
+# content_table.each.with_index{ |part,i| puts i,part.css("td").text }
 
 =begin
 http://www.airnav.com/cgi-bin/airport-search?place=#{place}&airportid=&lat=&NS=N&lon=&EW=W&fieldtypes=a&use=u&iap=0&length=&fuel=0&mindistance=0&maxdistance=#{radius}&distanceunits=nm
