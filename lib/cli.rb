@@ -4,9 +4,9 @@ class AirportFinder::CLI
 
 		@place = ""
 		@radius = 20
-		self.choice = nil
-		self.matches = []
-		self.airport = nil
+		@choice = nil
+		@matches = []
+		@airport = nil
 
 		welcome
 
@@ -92,11 +92,11 @@ class AirportFinder::CLI
 			entry = gets.strip
 
 			if entry == "" || entry == "0"
-				radius = 20
+				self.radius = 20
 				puts "\nSearch radius is #{radius}nm.  Is this ok? Enter 'y' or 'n'"
 				ok_two = ok?
 			elsif entry.to_i != 0
-				radius = [entry.to_i, 200].min
+				self.radius = [entry.to_i, 200].min
 				puts "\nSearch radius is #{radius}nm. Is this ok? Enter 'y' or 'n'"
 				ok_two = ok?
 			else
@@ -107,7 +107,7 @@ class AirportFinder::CLI
 				
 		end
 
-		self.matches = airport_menu(Search.find_or_create(self.place, radius))
+		self.matches = airport_menu(Search.find_or_create(self.place, self.radius))
 	end
 
 	def airport_menu(matches)
@@ -126,35 +126,39 @@ class AirportFinder::CLI
 			when ''
 				locate_airport
 			else
-				self.whoops
+				while (continue != "y" && continue != "n") do
+					self.whoops
+					puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
+					continue = gets.strip.downcase
+				end
 			end
 		else
-			puts "Here are your matches"
-			puts "#: Identifier | Name                                              | Distance(nm)"
+			puts "Here are your matches\n"
+			puts "#: Identifier | City                                    | Name"
+			# 14|
 			matches.each.with_index(1) do |match, i|
-				# 1: Identifier | Name                                              | Distance
-				if match[1].length >= 50
-					airport_name = match[1].slice(0,50)
-				else
-					airport_name = match[1] + " " * (50 - match[1].length )
-				end
-				puts "#{i}: #{match[0]}        | #{airport_name}| #{match[2]}"
+				line = []
+				line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
+				line << (match[1] + (" " * 40)).slice(0,40) + "| "
+				line << (match[2] + (" " * 50)).slice(0,50) + "\n"
+				puts line.join("")
 			end
 			# this will also diplay airport identifier, name, distance, and use?
 			#next is to ask to select which airport to learn more about
 			#get info from Airport object
 		end
-		learn_more(matches)
+		airport_select(matches) if continue != "n"
 	end
 
 	def airport_select(matches)
 		puts "Please enter the number of the airport."
 		choice = gets.strip
-		while choice.to_i == 0 do
+		while choice.to_i == 0 || choice.to_i > matches.length do
 			self.whoops # add in a  condition for input of 'exit'
+			choice = gets.strip
 		end
 
-		airport = Airport.find(matches[choice.to_i - 1][0])
+		puts matches[choice.to_i - 1][4]
 	end
 
 ## End locate airport chain
@@ -226,6 +230,22 @@ class AirportFinder::CLI
 
 	def radius
 		@radius
+	end
+
+	def matches=(matches)
+		@matches = matches
+	end
+
+	def matches
+		@matches
+	end
+
+	def airport=(airport)
+		@airport = airport
+	end
+
+	def airport
+		@airport
 	end
 
 end

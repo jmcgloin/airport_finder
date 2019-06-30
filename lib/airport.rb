@@ -2,7 +2,7 @@ class Airport
 
 	@@all = []
 
-	def initialize(identifier, runways, fsbos, services, coms, operations, owner_manager)
+	def initialize(identifier, name)# (identifier, runways, fsbos, services, coms, operations, owner_manager)
 		=begin
 			identifier is a string
 			runways is an array of objects
@@ -25,8 +25,12 @@ class Airport
 		self.all.detect{ |airport| airport.identifier == identifier }
 	end
 
-	def create_from_scrape(airport_data) #maybe change data when you get a better idea of what the data looks like
-		
+	def self.find_or_create(identifier, name = nil)
+		self.find(identifier) || Airport.new(identifier, name)
+	end
+
+	def add_airport_details(details_hash)
+			self.details ||= details_hash
 	end
 
 end

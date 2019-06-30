@@ -1,4 +1,6 @@
 require 'pry'
+require 'nokogiri'
+require 'open-uri'
 
 require_relative "./airport_finder/version"
 
@@ -9,3 +11,4 @@ end
 
 require_relative "./cli"
 require_relative "./search"
+require_relative "./scraper"
