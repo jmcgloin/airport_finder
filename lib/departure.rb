@@ -1,3 +1,0 @@
-class Departure < Airport
-
-end

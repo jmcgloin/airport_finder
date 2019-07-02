@@ -160,7 +160,7 @@ class AirportFinder::CLI
 		# binding.pry
 		# puts matches[choice.to_i - 1][4] # TODO find or create airport
 		airport = matches[choice.to_i - 1]
-		Airport.find_or_create(airport[0], airport[4])
+		Airport.find_or_create(airport[0].strip, airport[1].strip, airport[4])
 	end
 
 ## End locate airport chain

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"content",
+				"content_table"
+			],
+			[
 				"find",
 				"find_or_create"
 			],
@@ -260,7 +264,7 @@
 			"file": "lib/scraper.rb",
 			"settings":
 			{
-				"buffer_size": 1256,
+				"buffer_size": 1636,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -504,7 +508,7 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -692,15 +696,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1256,
+						"buffer_size": 1636,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								971,
-								971
+								1321,
+								1321
 							]
 						],
 						"settings":
@@ -709,7 +713,7 @@
 							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 306.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
