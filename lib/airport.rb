@@ -28,7 +28,7 @@ class Airport
 
 		details_array = Scraper.new.scrape_airport_info(url)
 		ap.make_details_hash(details_array)
-		puts ap.details
+		ap
 
 	end
 

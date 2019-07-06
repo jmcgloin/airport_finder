@@ -63,7 +63,7 @@ class AirportFinder::CLI
 		#cli should display the matches and ask for next round of input
 		#else, ask for new input (give option to quit)
 		#user chooses an airport
-		#hand off aiport to Airport which will return airport info to display
+		#hand off airport to Airport which will return airport info to display
 		#ask what info is wanted, give option to see charts
 
 		ok_one = false
@@ -143,9 +143,6 @@ class AirportFinder::CLI
 				line << (match[2] + (" " * 50)).slice(0,50) + "\n"
 				puts line.join("")
 			end
-			# this will also diplay airport identifier, name, distance, and use?
-			#next is to ask to select which airport to learn more about
-			#get info from Airport object
 		end
 		airport_select(matches) if continue != "n"
 	end
@@ -159,8 +156,62 @@ class AirportFinder::CLI
 		end
 		# binding.pry
 		# puts matches[choice.to_i - 1][4] # TODO find or create airport
-		airport = matches[choice.to_i - 1]
-		Airport.find_or_create(airport[0].strip, airport[1].strip, airport[4])
+		selection = matches[choice.to_i - 1]
+		airport = Airport.find_or_create(selection[0].strip, selection[1].strip, selection[4])
+		learn_more(airport)
+	end
+
+	def learn_more(airport)
+		max_choice = airport.details.keys.count + 2
+		puts "\n #{airport.identifier} - #{airport.name}:"
+		airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+		puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
+		puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
+		puts "\nWould you like to learn more about this airport?"
+		puts "Enter the number of the topic you want to know more about."
+		choice = gets.strip
+		while !choice.to_i.between?(1,max_choice)
+			self.whoops
+			puts "Enter the number of the topic you want to know more about."
+			choice = gets.strip
+		end
+		while choice.to_i != max_choice
+			case choice.to_i
+			when (1..max_choice - 2)
+				show_details(airport.details, choice.to_i)
+			when max_choice - 1
+				#get the coordinates and parse to chart url and open url
+				show_chart(airport)
+			end
+			puts "\nWhat else would you like to see?"
+			airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+			puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
+			puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
+			puts "\nEnter the number of the topic you want to know more about."
+			choice = gets.strip
+			while !choice.to_i.between?(1,max_choice)
+				self.whoops
+				puts "Enter the number of the topic you want to know more about."
+				choice = gets.strip
+			end
+		end
+		return_to_main_menu
+
+	end
+
+	def show_details(details, choice)
+		puts "I will show details"
+		category = details.keys[choice - 1]
+		puts category
+		details[category].each_pair.with_index do |(topic, data), i|
+			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count + 2)}")}" if choice != 4
+			binding.pry if choice = 4
+		end
+
+	end
+
+	def show_chart(airport)
+		puts "I will show chart"
 	end
 
 ## End locate airport chain
@@ -171,6 +222,18 @@ class AirportFinder::CLI
 		puts "planning"
 	end
 
+## End plan route chain
+
+## Instance and class variables/methods below
+	def return_to_main_menu
+		print "\nReturning to main menu"
+		3.times do
+			$stdout.flush
+			print " ."
+			sleep(0.5)
+		end
+		system "clear"
+	end
 	def exit
 
 		goodbyes = [
@@ -201,10 +264,6 @@ class AirportFinder::CLI
 				return false
 			end
 	end
-
-## End plan route chain
-
-## Instance and class variables/methods below
 	def whoops
 		puts "\nWhoops!  I don't understand that.  Let's try again."
 	end
