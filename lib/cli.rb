@@ -1,3 +1,16 @@
+=begin
+
+NEXT TODO:
+
+fix runways
+fix formatting on aiport statistics
+
+
+=end
+
+
+
+
 class AirportFinder::CLI
 
 	def call
@@ -157,7 +170,7 @@ class AirportFinder::CLI
 		# binding.pry
 		# puts matches[choice.to_i - 1][4] # TODO find or create airport
 		selection = matches[choice.to_i - 1]
-		airport = Airport.find_or_create(selection[0].strip, selection[1].strip, selection[4])
+		airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
 		learn_more(airport)
 	end
 
@@ -200,12 +213,12 @@ class AirportFinder::CLI
 	end
 
 	def show_details(details, choice)
-		puts "I will show details"
 		category = details.keys[choice - 1]
-		puts category
+		puts "\nShowing #{category}\n"
 		details[category].each_pair.with_index do |(topic, data), i|
-			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count + 2)}")}" if choice != 4
-			binding.pry if choice = 4
+			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if choice != 4
+			puts "#{data}\n" if choice == 4
+			# binding.pry if choice = 4
 		end
 
 	end
