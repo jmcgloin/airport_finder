@@ -34,8 +34,9 @@ class Scraper
 		subheadings = data.css("h4")
 		content_table = data.css("a + h3 + table")
 		runways_table = data.css("h4 + table")
+		more_info = data.css(".wl")
 
-		[headings, subheadings, content_table, runways_table]
+		[headings, subheadings, content_table, runways_table,  more_info]
 
 	end # scrape_airport_info
 

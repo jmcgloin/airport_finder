@@ -24,28 +24,57 @@ class Airport
 
 	def self.create(identifier, name, url)
 		
+		ap = Airport.new(identifier, name)
+
 		details_array = Scraper.new.scrape_airport_info(url)
+		ap.make_details_hash(details_array)
+
+	end
+
+	def make_details_hash(details_array)
+
 		headings = details_array[0]
 		subheadings = details_array[1]
 		content_table = details_array[2]
 		runways_table = details_array[3]
+		more_info =  details_array[4]
 
-		ap = Airport.new(identifier, name)
+		section_heading, section_content = "", []
 
-		headings.children.each{ |child| ap.details[child.text.to_sym] = {} }
+		# binding.pry
 
+		headings.children.each{ |child| self.details[child.text.to_sym] = {} }
+		self.details.delete(:"Instrument Procedures")
+
+		j = 0
+		for i in (0..details.keys.count - 1) do 
+			if details.keys[i] == :"Runway Information"
+				#do something with runways__table
+			elsif details.keys[i].to_s.include? "Other Pages"
+				self.details.delete(details.keys[i])
+				# binding.pry
+			else
+
+				filtered_content = content_table[j].children.select{ |child| child.text.strip != "" }
+
+				filtered_content.each do |subsection|
+					# binding.pry if !subsection.children[0]
+					section_heading = subsection.children[0].children
+					section_content = subsection.children[1].children.map do |el|
+						el.text.gsub(/\u00a0/, '')
+					end.select{ |et| et.strip != "" }
+					details[details.keys[i]][section_heading.text] = section_content
+					binding.pry
+				end
+				j += 1
+			end
+		end
 
 		binding.pry
-		# [headings, subheadings, content_table, runways_table]
-		# TODO create the runways and associate with the airport,
-		# populate details hash from the headings and content_table
-		# probably do most of it by iterating throught the  children of the details and adding them
-		# to the appropriate hashes with the needed formating for display
-	end
-
-	def make_details_hash(details)
 
 	end
+
+
 
 end
 
