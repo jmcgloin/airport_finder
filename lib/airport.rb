@@ -50,7 +50,27 @@ class Airport
 		j = 0
 		for i in (0..details.keys.count - 1) do 
 			if details.keys[i] == :"Runway Information"
-				#do something with runways__table
+				#do something with runways_table
+				#if runways_table.children.each child.children.count == 2 then its common infor for a runway
+				#if runways_table.children.each child.children.count == 4 then its info for each heading
+				#if runways_table.children.each child.children.count == 0 twice in a row, its a new runway
+				subheadings.each{ |sh| details[:"Runway Information"][sh] = [] }
+				
+				runways_table.children.each do |child|
+
+				#50 char width
+					gchilds = child.children
+					case gchilds.count
+					when 4
+						#if child.children[0] == "" then its a new heading
+						#details[:"Runway Information"][subheadings[j]] << 
+						puts 4
+					when 2
+						spaces = 12 - gchilds[0].chars.count
+						details[:"Runway Information"][subheadings[j]] << 
+				end
+				details[:"Runway Information"][subheadings[j]][]
+				binding.pry
 			elsif details.keys[i].to_s.include? "Other Pages"
 				self.details.delete(details.keys[i])
 				# binding.pry
