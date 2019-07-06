@@ -54,23 +54,36 @@ class Airport
 				#if runways_table.children.each child.children.count == 2 then its common infor for a runway
 				#if runways_table.children.each child.children.count == 4 then its info for each heading
 				#if runways_table.children.each child.children.count == 0 twice in a row, its a new runway
-				subheadings.each{ |sh| details[:"Runway Information"][sh] = [] }
-				
-				runways_table.children.each do |child|
+				# first  subheading
+				# info common to first runways
+				# split page with info specific to each runway
+				# second heading
+				# info common to next runways
+				# split page with info specific to next runway
+				# repeat when gchildren.count switches back to 2
+				sh_count = 0 # increment when gchilds_count changes from 4 to 2
+				det_count = 0 # increment everytime a detail is pushed to the array
+				details[:"Runway Information"][subheadings[0]] = []
+				gchilds_counts = [2, 2]
+				while sh_count < subheadings.count do
+					child = runways_table.children[det_count]
+					gchilds = child.children.map{ |gchild| gchild.text.gsub(/\u00a0/, '').strip }
+					gchilds_counts[1], gchilds_counts[0] = gchilds_counts[0], gchilds.count
+					case gchilds_counts
+					when [2,2]
+						det_string = "#{" " * (37 - gchild[0].text.chars.count)}#{gchild[0]} #{gchild[1]}"
+						details[:"Runway Information"][subheadings[0]] << det_string
+					# when [2,4]
+					# 	det_string = "#{" " * (37 - gchild[0].text.chars.count)}#{gchild[0]} #{gchild[1]}"
+					# 	detstring += 
+					# when [4,4]
 
-				#50 char width
-					gchilds = child.children
-					case gchilds.count
-					when 4
-						#if child.children[0] == "" then its a new heading
-						#details[:"Runway Information"][subheadings[j]] << 
-						puts 4
-					when 2
-						spaces = 12 - gchilds[0].chars.count
-						details[:"Runway Information"][subheadings[j]] << 
+					# when [4,2]
+
+					end
 				end
-				details[:"Runway Information"][subheadings[j]][]
-				binding.pry
+
+
 			elsif details.keys[i].to_s.include? "Other Pages"
 				self.details.delete(details.keys[i])
 				# binding.pry
