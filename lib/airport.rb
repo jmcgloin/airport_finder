@@ -28,6 +28,7 @@ class Airport
 
 		details_array = Scraper.new.scrape_airport_info(url)
 		ap.make_details_hash(details_array)
+		puts ap.details
 
 	end
 
@@ -57,20 +58,32 @@ class Airport
 
 				filtered_content = content_table[j].children.select{ |child| child.text.strip != "" }
 
-				filtered_content.each do |subsection|
+				filtered_content.each.with_index do |subsection, k|
 					# binding.pry if !subsection.children[0]
-					section_heading = subsection.children[0].children
-					section_content = subsection.children[1].children.map do |el|
-						el.text.gsub(/\u00a0/, '')
-					end.select{ |et| et.strip != "" }
-					details[details.keys[i]][section_heading.text] = section_content
-					binding.pry
+					if i != 3
+						section_heading = subsection.children[0].text
+						section_content = subsection.children[1].children.map do |el|
+							el.text.gsub(/\u00a0/, '')
+						end.select{ |et| et.strip != "" }
+					else
+						if k == 0
+							sec_split = subsection.text.split(/\s/)
+							section_heading = " " * 3
+							section_content = "#{sec_split[0]}|#{sec_split[1]}     |#{sec_split[2]}   |#{sec_split[3]}"
+						else
+							sec_split = subsection.children.map{ |el| el.text.gsub(/\u00a0/, '').strip }.select{ |el| el != "" }
+							section_heading = k.to_s + ":" + (" " * (3 - k.to_s.chars.count))
+							section_content = "#{sec_split[0]}       |#{sec_split[1]}|#{sec_split[2]}|#{sec_split[3]}"
+						end
+					end
+					details[details.keys[i]][section_heading] = section_content
+					# binding.pry
 				end
 				j += 1
 			end
 		end
 
-		binding.pry
+		# binding.pry
 
 	end
 
@@ -79,40 +92,21 @@ class Airport
 end
 
 =begin
-samples
+pry(#<Airport>)> content_table[3].text
+=> "\nVOR radial/distance  VOR name  Freq  Var\nDJBr132/22.5DRYER VOR/DME113.6005W\nACOr277/25.5AKRON VOR/DME114.4004W\nBSVr331/27.9BRIGGS VOR/DME112.4004W\nCXRr235/35.6CHARDON VOR/DME112.7005W\n"
+[5] pry(#<Airport>)> content_table[3].children[0].text
+=> "\n"
+[6] pry(#<Airport>)> content_table[3].children[1].text
+=> "VOR radial/distance  VOR name  Freq  Var"
+[7] pry(#<Airport>)> content_table[3].children[2].text
+=> "\n"
+[8] pry(#<Airport>)> content_table[3].children[3].text
+=> "DJBr132/22.5DRYER VOR/DME113.6005W"
+[9] pry(#<Airport>)> content_table[3].children[3].children[0].text
+=> "DJBr132/22.5"
+[10] pry(#<Airport>)> 
 
-headings.text (with index)
-0: Location
-1: Airport Operations
-2: Airport Communications
-3: Nearby radio navigation aids
-4: Airport Services
-5: Runway Information
-6: Airport Operational Statistics
-7: Additional Remarks
-8: Instrument Procedures
-9: Other Pages about Norman Y Mineta San Jose International Airport
-
-
-content_table only has children, no grandchildren
-content_table[0].children.each{ |child| puts child.text }
-
-FAA Identifier: SJC
-
-Lat/Long: 37-21-46.7810N / 121-55-43.0340W37-21.779683N / 121-55.717233W37.3629947 / -121.9286206(estimated)
-
-Elevation: 62.2 ft. / 19.0 m (surveyed)
-
-Variation: 13E (2020)
-
-From city: 2 miles NW of SAN JOSE, CA
-
-Time zone: UTC -7 (UTC -8 during Standard Time)
-
-Zip code: 95110
-
-the blank lines are \n that can be  stripped and the  filtered with != ""
-
-
+VOR radial/distance|VOR name     |Freq   |Var
+DJBr132/22.5       |DRYER VOR/DME|113.600|5W
 
 =end
