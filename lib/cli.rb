@@ -175,9 +175,10 @@ class AirportFinder::CLI
 	end
 
 	def learn_more(airport)
-		max_choice = airport.details.keys.count + 2
+		max_choice = airport.details.keys.count + 3
 		puts "\n #{airport.identifier} - #{airport.name}:"
 		airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+		puts "#{max_choice - 2}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}Runways"
 		puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
 		puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
 		puts "\nWould you like to learn more about this airport?"
@@ -190,14 +191,17 @@ class AirportFinder::CLI
 		end
 		while choice.to_i != max_choice
 			case choice.to_i
-			when (1..max_choice - 2)
+			when (1..max_choice - 3)
 				show_details(airport.details, choice.to_i)
+			when max_choice - 2
+				show_runway_info(airport)
 			when max_choice - 1
 				#get the coordinates and parse to chart url and open url
 				show_chart(airport)
 			end
 			puts "\nWhat else would you like to see?"
 			airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+			puts "#{max_choice - 2}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}Runways"
 			puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
 			puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
 			puts "\nEnter the number of the topic you want to know more about."
@@ -225,6 +229,12 @@ class AirportFinder::CLI
 
 	def show_chart(airport)
 		puts "I will show chart"
+	end
+
+	def show_runway_info(airport)
+		rws = airport.runways
+		rws.each.with_index(1){ |rw, i| puts "\n#{i}: #{rw.name} is #{rw.dimensions} and is made of #{rw.surface}" }
+		# binding.pry
 	end
 
 ## End locate airport chain
