@@ -26,7 +26,6 @@ class Runway
 		runway_dimensions = []
 		runway_surfaces = []
 		runway_data.children.each do |child|
-			# binding.pry
 			if child.children.count > 0
 				case child.children[0].text.gsub(/\u00a0/, '').strip
 				when "Dimensions:"
@@ -39,7 +38,6 @@ class Runway
 		runway_names.each.with_index do |name, i|
 			rw = self.find_or_create(name.text, runway_dimensions[i], airport)
 			rw.surface = runway_surfaces[i]
-			# binding.pry
 			rw.add_to_airport(airport)
 		end
 	end

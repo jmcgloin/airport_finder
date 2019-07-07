@@ -53,27 +53,46 @@ class Airport
 		for i in (0..details.keys.count - 1) do 
 			if details.keys[i].to_s.include? "Other Pages"
 				self.details.delete(details.keys[i])
-				# binding.pry
 			else
 				filtered_content = content_table[j].children.select{ |child| child.text.strip != "" }
 				filtered_content.each.with_index do |subsection, k|
-					if i != 3
+					if i != 3 && i != 5
 						section_heading = subsection.children[0].text
 						section_content = subsection.children[1].children.map do |el|
 							el.text.gsub(/\u00a0/, '')
 						end.select{ |et| et.strip != "" }
-					else
+						# binding.pry
+					elsif i == 3
 						if k == 0
-							sec_split = subsection.text.split(/\s/)
-							section_heading = " " * 3
-							section_content = "#{sec_split[0]}|#{sec_split[1]}     |#{sec_split[2]}   |#{sec_split[3]}"
+							sec_split = subsection.text.split(/\u00a0{2}/)
+							section_heading = "   "
+							section_content = "#{sec_split[0]}|#{sec_split[1]}               |#{sec_split[2]}   |#{sec_split[3]}"
 						else
 							sec_split = subsection.children.map{ |el| el.text.gsub(/\u00a0/, '').strip }.select{ |el| el != "" }
 							section_heading = k.to_s + ":" + (" " * (3 - k.to_s.chars.count))
-							section_content = "#{sec_split[0]}       |#{sec_split[1]}|#{sec_split[2]}|#{sec_split[3]}"
+							section_content = "#{sec_split[0]}       |#{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|#{sec_split[2]}|#{sec_split[3]}"
+						end
+					elsif i == 5
+						trs = subsection.css("tr")
+						section_heading = []
+						section_content = []
+						trs.each do |tr|
+							section_heading << tr.children[0].text if tr.children[0]
+							if tr.children[2]
+								section_content << tr.children[2].text
+							elsif tr.children[1]
+								section_content << tr.children[1].text
+							else
+								section_content << ""
+							end
 						end
 					end
-					details[details.keys[i]][section_heading] = section_content
+					if i != 5
+						details[details.keys[i]][section_heading] = section_content
+					else
+						section_heading.each.with_index{ |sh, m| details[details.keys[i]][sh] = section_content[m]}
+					end
+
 				end
 				j += 1
 			end

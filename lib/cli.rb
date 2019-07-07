@@ -167,7 +167,6 @@ class AirportFinder::CLI
 			self.whoops # add in a  condition for input of 'exit'
 			choice = gets.strip
 		end
-		# binding.pry
 		# puts matches[choice.to_i - 1][4] # TODO find or create airport
 		selection = matches[choice.to_i - 1]
 		airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
@@ -220,9 +219,12 @@ class AirportFinder::CLI
 		category = details.keys[choice - 1]
 		puts "\nShowing #{category}\n"
 		details[category].each_pair.with_index do |(topic, data), i|
-			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if choice != 4
+			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if (choice != 4 && choice != 6)
 			puts "#{data}\n" if choice == 4
-			# binding.pry if choice = 4
+			if choice == 6
+				# binding.pry
+				puts "#{topic}#{data}"
+			end
 		end
 
 	end
@@ -234,7 +236,6 @@ class AirportFinder::CLI
 	def show_runway_info(airport)
 		rws = airport.runways
 		rws.each.with_index(1){ |rw, i| puts "\n#{i}: #{rw.name} is #{rw.dimensions} and is made of #{rw.surface}" }
-		# binding.pry
 	end
 
 ## End locate airport chain
