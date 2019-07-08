@@ -50,19 +50,7 @@ class AirportFinder::CLI
 
 ### Begin locate airport chain
 	def locate_airport
-
-		#TODO-NEXT
-		#what to do here......
-		#X ask for the city/state or zip code or airport identifier? (will i use this? if there's time?)
-		#hand off to Search to get the info from the scraper if it doesn't already exist
-		#Search should return the first round search (matches within radius) or return nil if no matches
-		#if there are matches:
-		#cli should display the matches and ask for next round of input
-		#else, ask for new input (give option to quit)
-		#user chooses an airport
-		#hand off airport to Airport which will return airport info to display
-		#ask what info is wanted, give option to see charts
-
+		
 		ok_one = false
 		ok_two = false
 
