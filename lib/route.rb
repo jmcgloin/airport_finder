@@ -23,4 +23,12 @@ class Route
 		self.find(departure, arrival) || self.create(departure, arrival)
 	end
 
+	def calculate_distance
+
+	end
+
+	def calculate_bearings
+
+	end
+
 end
