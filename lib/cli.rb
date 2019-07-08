@@ -1,16 +1,3 @@
-=begin
-
-NEXT TODO:
-
-fix runways
-fix formatting on aiport statistics
-
-
-=end
-
-
-
-
 class AirportFinder::CLI
 
 	def call
@@ -27,9 +14,6 @@ class AirportFinder::CLI
 
 	def welcome
 
-			#TODO-TIME
-			#maybe try to put a logo here if you have time 
-			#look into  colors for the text if theres time
 			system "clear" # add this to a few locations to keep the screen clean TODO-TIME
 			puts "\nWelcome to Airport Finder!"
 			
@@ -195,7 +179,6 @@ class AirportFinder::CLI
 			when max_choice - 2
 				show_runway_info(airport)
 			when max_choice - 1
-				#get the coordinates and parse to chart url and open url
 				show_chart(airport)
 			end
 			puts "\nWhat else would you like to see?"
@@ -211,7 +194,8 @@ class AirportFinder::CLI
 				choice = gets.strip
 			end
 		end
-		return_to_main_menu
+		print "\nReturning to main menu"
+		slow_ellipsis
 
 	end
 
@@ -230,7 +214,16 @@ class AirportFinder::CLI
 	end
 
 	def show_chart(airport)
-		puts "I will show chart"
+		# http://vfrmap.com/?type=vfrc&lat=41.151&lon=-81.415&zoom=10
+		latlong = airport.details[:Location]["Lat/Long: "][2].split(" / ")
+		lat = latlong[0].to_f
+		long = latlong[1].to_f
+		chart_url = "http://vfrmap.com/?type=vfrc&lat=#{lat}&lon=#{long}&zoom=10"
+		print "Opening chart for #{airport.name}"
+		slow_ellipsis
+		Launchy.open(chart_url)
+		sleep(1)
+
 	end
 
 	def show_runway_info(airport)
@@ -249,8 +242,7 @@ class AirportFinder::CLI
 ## End plan route chain
 
 ## Instance and class variables/methods below
-	def return_to_main_menu
-		print "\nReturning to main menu"
+	def slow_ellipsis
 		3.times do
 			$stdout.flush
 			print " ."

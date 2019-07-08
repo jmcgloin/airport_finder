@@ -66,11 +66,13 @@ class Airport
 						if k == 0
 							sec_split = subsection.text.split(/\u00a0{2}/)
 							section_heading = "   "
-							section_content = "#{sec_split[0]}|#{sec_split[1]}               |#{sec_split[2]}   |#{sec_split[3]}"
+							section_content = "#{sec_split[0]} |#{sec_split[1]}               |#{sec_split[2]}   |#{sec_split[3]}"
 						else
-							sec_split = subsection.children.map{ |el| el.text.gsub(/\u00a0/, '').strip }.select{ |el| el != "" }
+							sec_split = subsection.children.map do |el|
+								el.text.gsub(/\u00a0/, '').strip
+							end.select{ |el| el != "" }
 							section_heading = k.to_s + ":" + (" " * (3 - k.to_s.chars.count))
-							section_content = "#{sec_split[0]}       |#{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|#{sec_split[2]}|#{sec_split[3]}"
+							section_content = "#{sec_split[0]}#{" " * (20 - sec_split[0].chars.count)}|#{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|#{sec_split[2]}|#{sec_split[3]}"
 						end
 					elsif i == 5
 						trs = subsection.css("tr")
