@@ -2,4 +2,4 @@
 
 require_relative '../lib/environment'
 
-AirportFinder::CLI.new.call
+AirportFinder::CLI.new.welcome

@@ -1,14 +1,24 @@
 class AirportFinder::CLI
 
-	def call
+	attr_accessor :choice, :place, :matches, :airport
+
+	
+	def radius=(radius = 20)
+		@radius = [radius.to_i, 1].max
+		@radius = [@radius, 200].min
+	end
+
+	def radius
+		@radius
+	end
+
+	def initialize
 
 		@place = ""
 		@radius = 20
 		@choice = nil
 		@matches = []
 		@airport = nil
-
-		welcome
 
 	end
 
@@ -17,40 +27,48 @@ class AirportFinder::CLI
 			system "clear" # add this to a few locations to keep the screen clean TODO-TIME
 			puts "\nWelcome to Airport Finder!"
 			
-			main_menu
+			main_menu_message
 
 	end
 
-	def main_menu
+	def main_menu_message
 
-		while self.choice != 'exit' do
-
+		while choice != "exit"
 			puts "\nWhat would you like to do?"
 			puts "Please select from the following choices:"
 			puts "1: Locate an airport by city/state or zip code"
 			puts "2: Plan a route between two airports"
 			puts "Enter the number of your choice or type 'exit' to exit."
 
-			self.choice = gets.strip
-
-			case self.choice
-			when "1"
-				locate_airport
-			when "2"
-				plan_route
-			when "exit"
-				exit
-			else
-				self.whoops
-			end
-
+			gets_and_hand_off(:main_menu_decision)
 		end
+
 	end
 
+	def main_menu_decision
+		
+		case self.choice
+		when "1"
+			locate_airport
+		when "2"
+			plan_route
+		when "exit"
+			exit
+		else
+			self.whoops
+		end
+
+	end
 
 ### Begin locate airport chain
-	def locate_airport
+
+	def choose_location
+
 		
+
+	end
+	def locate_airport
+
 		ok_one = false
 		ok_two = false
 
@@ -230,6 +248,14 @@ class AirportFinder::CLI
 ## End plan route chain
 
 ## Instance and class variables/methods below
+
+	def gets_and_hand_off(function)
+
+		self.choice = gets.strip
+		send(function)
+
+	end
+
 	def slow_ellipsis
 		3.times do
 			$stdout.flush
@@ -272,45 +298,8 @@ class AirportFinder::CLI
 		puts "\nWhoops!  I don't understand that.  Let's try again."
 	end
 
-	def choice=(choice)
-		@choice = choice
-	end
+	# move to attr_accessor as able
 
-	def choice
-		@choice
-	end
-
-	def place=(place = "")
-		@place = place
-	end
-
-	def place
-		@place
-	end
-
-	def radius=(radius = 20)
-		@radius = [radius.to_i, 1].max
-		@radius = [@radius, 200].min
-	end
-
-	def radius
-		@radius
-	end
-
-	def matches=(matches)
-		@matches = matches
-	end
-
-	def matches
-		@matches
-	end
-
-	def airport=(airport)
-		@airport = airport
-	end
-
-	def airport
-		@airport
-	end
+	
 
 end
