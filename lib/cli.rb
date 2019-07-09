@@ -128,10 +128,11 @@ class AirportFinder::CLI
 	def get_matches
 
 		self.matches = Search.find_or_create(self.location, self.radius)
+		matches_input
 
 	end
 
-	def check_matches
+	def matches_input
 
 		if self.matches.length == 0
 			puts "\nYour search of #{self.location} with a radius of #{self.radius} did not return any matches."
@@ -159,18 +160,49 @@ class AirportFinder::CLI
 
 	def display_matches
 
-		puts "Here are your matches\n"
-		puts "#: Identifier | City                                    | Name"
-		# 14|
-		matches.each.with_index(1) do |match, i|
-			line = []
-			line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
-			line << (match[1] + (" " * 40)).slice(0,40) + "| "
-			line << (match[2] + (" " * 50)).slice(0,50) + "\n"
-			puts line.join("")
+		if choice != 'exit'			
+			puts "Here are your matches\n"
+			puts "#: Identifier | City                                    | Name"
+			# 14|
+			matches.each.with_index(1) do |match, i|
+				line = []
+				line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
+				line << (match[1] + (" " * 40)).slice(0,40) + "| "
+				line << (match[2] + (" " * 50)).slice(0,50) + "\n"
+				puts line.join("")
+			end
+
+			select_from_matches_prompt
 		end
 
 	end
+
+	def select_from_matches_prompt
+
+		if self.choice != 'exit'
+			puts "Please enter the number of the airport."
+			gets_and_hand_off(:select_from_matches)
+			if self.choice.to_i == 0 || self.choice.to_i > self.matches.length do
+				self.whoops
+				select_from_matches
+			else
+				selection = matches[choice.to_i - 1]
+				self.airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
+				learn_more(airport)
+			end
+		end
+
+	end
+
+
+
+
+
+
+
+
+
+
 
 	# def 
 
@@ -223,7 +255,7 @@ class AirportFinder::CLI
 
 
 ################## refactor this section next ##########################
-	def airport_menu(matches)
+	# def airport_menu(matches)
 ################# 		
 		# count = matches.length
 		# if count == 0
@@ -247,42 +279,42 @@ class AirportFinder::CLI
 		# 		end
 		# 	end
 		# else
-			puts "Here are your matches\n"
-			puts "#: Identifier | City                                    | Name"
-			# 14|
-			matches.each.with_index(1) do |match, i|
-				line = []
-				line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
-				line << (match[1] + (" " * 40)).slice(0,40) + "| "
-				line << (match[2] + (" " * 50)).slice(0,50) + "\n"
-				puts line.join("")
-			end
-		end
-		airport_select(matches) if continue != "n"
-	end
+		# 	puts "Here are your matches\n"
+		# 	puts "#: Identifier | City                                    | Name"
+		# 	# 14|
+		# 	matches.each.with_index(1) do |match, i|
+		# 		line = []
+		# 		line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
+		# 		line << (match[1] + (" " * 40)).slice(0,40) + "| "
+		# 		line << (match[2] + (" " * 50)).slice(0,50) + "\n"
+		# 		puts line.join("")
+		# 	end
+		# end
+		# airport_select(matches) if continue != "n"
+	# end
 
-	def airport_select(matches)
-		puts "Please enter the number of the airport."
-		choice = gets.strip
-		while choice.to_i == 0 || choice.to_i > matches.length do
-			self.whoops # add in a  condition for input of 'exit'
-			choice = gets.strip
-		end
+	# def airport_select(matches)
+		# puts "Please enter the number of the airport."
+		# choice = gets.strip
+		# while choice.to_i == 0 || choice.to_i > matches.length do
+		# 	self.whoops # add in a  condition for input of 'exit'
+		# 	choice = gets.strip
+		# end
 		# puts matches[choice.to_i - 1][4] # TODO find or create airport
-		selection = matches[choice.to_i - 1]
-		airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
-		learn_more(airport)
-	end
+		# selection = matches[choice.to_i - 1]
+		# airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
+		# learn_more(airport)
+	# end
 
 	def learn_more(airport)
-		max_choice = airport.details.keys.count + 3
-		puts "\n #{airport.identifier} - #{airport.name}:"
-		airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
-		puts "#{max_choice - 2}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}Runways"
-		puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
-		puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
-		puts "\nWould you like to learn more about this airport?"
-		puts "Enter the number of the topic you want to know more about."
+		# max_choice = airport.details.keys.count + 3
+		# puts "\n #{airport.identifier} - #{airport.name}:"
+		# airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+		# puts "#{max_choice - 2}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}Runways"
+		# puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
+		# puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
+		# puts "\nWould you like to learn more about this airport?"
+		# puts "Enter the number of the topic you want to know more about."
 		choice = gets.strip
 		while !choice.to_i.between?(1,max_choice)
 			self.whoops
