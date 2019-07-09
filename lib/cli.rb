@@ -1,10 +1,11 @@
 class AirportFinder::CLI
 
-	attr_accessor :choice, :place, :matches, :airport
+	attr_accessor :choice, :location, :matches, :airport
 
 	
 	def radius=(radius = 20)
-		@radius = [radius.to_i, 1].max
+
+		@radius = [radius.to_i, 20].max
 		@radius = [@radius, 200].min
 	end
 
@@ -15,7 +16,6 @@ class AirportFinder::CLI
 	def initialize
 
 		@place = ""
-		@radius = 20
 		@choice = nil
 		@matches = []
 		@airport = nil
@@ -27,11 +27,11 @@ class AirportFinder::CLI
 			system "clear" # add this to a few locations to keep the screen clean TODO-TIME
 			puts "\nWelcome to Airport Finder!"
 			
-			main_menu_message
+			main_menu_prompt
 
 	end
 
-	def main_menu_message
+	def main_menu_prompt
 
 		while choice != "exit"
 			puts "\nWhat would you like to do?"
@@ -40,80 +40,174 @@ class AirportFinder::CLI
 			puts "2: Plan a route between two airports"
 			puts "Enter the number of your choice or type 'exit' to exit."
 
-			gets_and_hand_off(:main_menu_decision)
+			gets_and_hand_off(:main_menu_input)
 		end
 
+		exit
 	end
 
-	def main_menu_decision
+	def main_menu_input
 		
-		case self.choice
-		when "1"
-			locate_airport
-		when "2"
-			plan_route
-		when "exit"
-			exit
-		else
-			self.whoops
+		if choice != 'exit'
+			input, self.choice = self.choice, nil
+			case input
+			when "1"
+				choose_location_prompt # locate_airport
+			when "2"
+				plan_route
+			when "exit"
+				self.choice = 'exit'
+			else
+				self.whoops
+			end
 		end
 
 	end
 
 ### Begin locate airport chain
 
-	def choose_location
-
-		
-
-	end
-	def locate_airport
-
-		ok_one = false
-		ok_two = false
-
-		while !ok_one do
+	def choose_location_prompt
+		if choice != 'exit'
 			puts "\nPlease enter the city and state OR the zip code to search"
 			puts "Example: 'Albuquerque, New Mexico'; Example: '90210'"
 
-			self.place = gets.strip #sanatize this
-
-			#maybe add a break to catch if 'exit' is entered in here
-
-			puts "\nYou entered #{self.place}.  Is this ok? Enter 'y' or 'n'"
-
-			ok_one = ok?
-
+			gets_and_hand_off(:choose_location_input)
 		end
 
-		while !ok_two do
-
-			puts "\nPlease enter the maximum search radius in nm"
-			puts "Or press enter to accept the default of 20nm"
-			puts "Min radius is 1nm. Max radius is 200nm"
-
-			entry = gets.strip
-
-			if entry == "" || entry == "0"
-				self.radius = 20
-				puts "\nSearch radius is #{radius}nm.  Is this ok? Enter 'y' or 'n'"
-				ok_two = ok?
-			elsif entry.to_i != 0
-				self.radius = [entry.to_i, 200].min
-				puts "\nSearch radius is #{radius}nm. Is this ok? Enter 'y' or 'n'"
-				ok_two = ok?
-			else
-				self.whoops
-			end
-
-			#maybe add a break to catch if 'exit' is entered in here
-				
-		end
-
-		self.matches = airport_menu(Search.find_or_create(self.place, self.radius))
 	end
 
+	def choose_location_input
+
+		if choice != 'exit'
+			self.location, self.choice = self.choice, nil
+			case self.location
+			when ""
+				choose_location_prompt
+			else
+				puts "\nThe location is #{self.location}.  Is this ok?"
+				puts "Please enter 'y' for yes or 'n' for no."
+
+				gets_and_hand_off(:is_this_ok?) ? choose_radius_prompt : choose_location_prompt
+
+			end
+		end
+
+	end
+
+	def choose_radius_prompt
+
+		if choice != 'exit'
+			puts "\nPlease enter the maximum search radius in nm"
+			puts "Or press enter to accept the default of 20nm"
+			puts "Min radius is 20nm. Max radius is 200nm"
+
+			gets_and_hand_off(:choose_radius_input)
+		end
+
+	end
+
+	def choose_radius_input
+
+		if choice != 'exit'
+			self.radius, self.choice = self.choice, nil
+			case self.radius
+			when ""
+				choose_location_prompt
+			else
+				puts "\nThe radius is #{self.radius}.  Is this ok?"
+				puts "Please enter 'y' for yes or 'n' for no."
+
+				gets_and_hand_off(:is_this_ok?) ? get_matches : choose_radius_prompt
+				check_matches
+
+			end
+		end
+
+	end
+
+	def get_matches
+
+		self.matches = Search.find_or_create(self.location, self.radius)
+
+	end
+
+	def check_matches
+
+		if self.matches.length == 0
+			puts "\nYour search of #{self.location} with a radius of #{self.radius} did not return any matches."
+			puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
+
+			gets_and_hand_off
+
+			case self.choice # gets_and_hand_off
+			when 'y', ''
+				self.choice = nil
+				choose_location_prompt
+			when 'n'
+				self.choice = nil
+				nil
+			else
+				self.choice = nil
+				self.whoops
+				check_matches
+			end
+		end
+
+	end
+
+	# def 
+
+
+	# def locate_airport
+
+	# 	ok_one = false
+	# 	ok_two = false
+
+	# 	while !ok_one do
+	# 		puts "\nPlease enter the city and state OR the zip code to search"
+	# 		puts "Example: 'Albuquerque, New Mexico'; Example: '90210'"
+
+	# 		self.place = gets.strip #sanatize this
+
+	# 		#maybe add a break to catch if 'exit' is entered in here
+
+	# 		puts "\nYou entered #{self.place}.  Is this ok? Enter 'y' or 'n'"
+
+	# 		ok_one = ok?
+
+	# 	end
+
+	# 	while !ok_two do
+
+	# 		puts "\nPlease enter the maximum search radius in nm"
+	# 		puts "Or press enter to accept the default of 20nm"
+	# 		puts "Min radius is 1nm. Max radius is 200nm"
+
+	# 		entry = gets.strip
+
+	# 		if entry == "" || entry == "0"
+	# 			self.radius = 20
+	# 			puts "\nSearch radius is #{radius}nm.  Is this ok? Enter 'y' or 'n'"
+	# 			ok_two = ok?
+	# 		elsif entry.to_i != 0
+	# 			self.radius = [entry.to_i, 200].min
+	# 			puts "\nSearch radius is #{radius}nm. Is this ok? Enter 'y' or 'n'"
+	# 			ok_two = ok?
+	# 		else
+	# 			self.whoops
+	# 		end
+
+	# 		#maybe add a break to catch if 'exit' is entered in here
+				
+	# 	end
+
+	# 	self.matches = airport_menu(Search.find_or_create(self.place, self.radius))
+	# end
+
+
+################## refactor this section next ##########################
 	def airport_menu(matches)
+################# 		
 		count = matches.length
 		if count == 0
 			puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
@@ -249,10 +343,10 @@ class AirportFinder::CLI
 
 ## Instance and class variables/methods below
 
-	def gets_and_hand_off(function)
+	def gets_and_hand_off(function = false)
 
-		self.choice = gets.strip
-		send(function)
+		self.choice = gets.strip.downcase
+		send(function) if (function && self.choice != "exit")
 
 	end
 
@@ -279,10 +373,10 @@ class AirportFinder::CLI
 
 	end
 
-	def ok?
-		ok = gets.strip.downcase
+	def is_this_ok?
 
-			case ok
+		if choice != "exit"			
+			case choice
 			when 'y'
 				return true
 			when ''
@@ -293,7 +387,9 @@ class AirportFinder::CLI
 				self.whoops
 				return false
 			end
+		end
 	end
+
 	def whoops
 		puts "\nWhoops!  I don't understand that.  Let's try again."
 	end
