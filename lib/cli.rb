@@ -151,6 +151,23 @@ class AirportFinder::CLI
 				self.whoops
 				check_matches
 			end
+		else
+			display_matches
+		end
+
+	end
+
+	def display_matches
+
+		puts "Here are your matches\n"
+		puts "#: Identifier | City                                    | Name"
+		# 14|
+		matches.each.with_index(1) do |match, i|
+			line = []
+			line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
+			line << (match[1] + (" " * 40)).slice(0,40) + "| "
+			line << (match[2] + (" " * 50)).slice(0,50) + "\n"
+			puts line.join("")
 		end
 
 	end
@@ -208,28 +225,28 @@ class AirportFinder::CLI
 ################## refactor this section next ##########################
 	def airport_menu(matches)
 ################# 		
-		count = matches.length
-		if count == 0
-			puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
-			puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
+		# count = matches.length
+		# if count == 0
+		# 	puts "Your search of #{self.place} with a radius of #{self.radius} did not return any matches."
+		# 	puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
 
-			continue = gets.strip.downcase
+		# 	continue = gets.strip.downcase
 
-			case continue
-			when 'y'
-				locate_airport
-			when 'n'
-				nil
-			when ''
-				locate_airport
-			else
-				while (continue != "y" && continue != "n") do
-					self.whoops
-					puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
-					continue = gets.strip.downcase
-				end
-			end
-		else
+		# 	case continue
+		# 	when 'y'
+		# 		locate_airport
+		# 	when 'n'
+		# 		nil
+		# 	when ''
+		# 		locate_airport
+		# 	else
+		# 		while (continue != "y" && continue != "n") do
+		# 			self.whoops
+		# 			puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
+		# 			continue = gets.strip.downcase
+		# 		end
+		# 	end
+		# else
 			puts "Here are your matches\n"
 			puts "#: Identifier | City                                    | Name"
 			# 14|
