@@ -229,6 +229,7 @@ class AirportFinder::CLI
 				slow_ellipsis
 				# main_menu_prompt
 			elsif (self.choice.to_i == self.max_choice - 1)
+				system "clear"
 				display_matches
 			else
 				system "clear"
