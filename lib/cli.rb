@@ -226,20 +226,27 @@ class AirportFinder::CLI
 
 		if self.choice != 'exit'
 			
-			case self.choice
-			when (1..self.max_choice - 3)
-				display_details
-			when (self.max_choice - 2)
-				display_runway_info
-			when (self.max_choice - 1)
-				display_chart
-			when self.max_choice
+			if self.choice.to_i == self.max_choice
 				print 'Returning to main menu'
 				slow_ellipsis
 				main_menu_prompt
 			else
-				self.whoops
+				case self.choice.to_i
+				when (1..self.max_choice - 3)
+					display_details
+				when (self.max_choice - 2)
+					display_runway_info
+				when (self.max_choice - 1)
+					display_chart
+				when self.max_choice
+					
+				else
+					self.whoops
+					learn_more_prompt
+				end
+
 				learn_more_prompt
+
 			end
 
 		end
@@ -247,12 +254,13 @@ class AirportFinder::CLI
 
 	def display_details
 
-		category = self.airport.details.keys[self.choice - 1]
+		choice_int = self.choice.to_i
+		category = self.airport.details.keys[choice_int - 1]
 		puts "\nShowing #{category}\n"
 		self.airport.details[category].each_pair.with_index do |(topic, data), i|
-			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if (choice != 4 && choice != 6)
-			puts "#{data}\n" if choice == 4
-			puts "#{topic}#{data}" if choice == 6
+			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if (choice_int != 4 && choice_int != 6)
+			puts "#{data}\n" if choice_int == 4
+			puts "#{topic}#{data}" if choice_int == 6
 		end
 	end
 
@@ -273,7 +281,7 @@ class AirportFinder::CLI
 		print "Opening chart for #{airport.name}"
 		slow_ellipsis
 		Launchy.open(chart_url)
-		sleep(0.5)
+		sleep(1)
 
 	end
 
