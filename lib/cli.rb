@@ -184,20 +184,39 @@ class AirportFinder::CLI
 
 		if self.choice != 'exit'
 			puts "Please enter the number of the airport."
-			gets_and_hand_off(:select_from_matches)
-			if self.choice.to_i == 0 || self.choice.to_i > self.matches.length
-				self.whoops
-				select_from_matches
-			else
-				selection = matches[choice.to_i - 1]
-				self.airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
-				gets_and_hand_off(:select_from_matches_input)
-			end
+			gets_and_hand_off(:select_from_matches_input)
 		end
 
 	end
 
 
+	def select_from_matches_input
+
+		if self.choice != 'exit'
+			if self.choice.to_i == 0 || self.choice.to_i > self.matches.length
+				self.whoops
+				select_from_matches_prompt
+			else
+				selection = matches[choice.to_i - 1]
+				self.airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
+				learn_more_prompt
+			end
+		end
+
+	end
+
+	def learn_more_prompt
+
+		max_choice = airport.details.keys.count + 3
+		puts "\n #{airport.identifier} - #{airport.name}:"
+		airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+		puts "#{max_choice - 2}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}Runways"
+		puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
+		puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
+		puts "\nWould you like to learn more about this airport?"
+		puts "Enter the number of the topic you want to know more about."
+
+	end
 
 
 
