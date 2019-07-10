@@ -257,9 +257,24 @@ class AirportFinder::CLI
 	end
 
 	def display_runway_info
+		
 		self.airport.runways.each.with_index(1) do |rw, i|
 			puts "\n#{i}: #{rw.name} is #{rw.dimensions} and is made of #{rw.surface}"
 		end
+
+	end
+
+	def display_chart
+
+		latlong = airport.details[:Location]["Lat/Long: "][2].split(" / ")
+		lat = latlong[0].to_f
+		long = latlong[1].to_f
+		chart_url = "http://vfrmap.com/?type=vfrc&lat=#{lat}&lon=#{long}&zoom=10"
+		print "Opening chart for #{airport.name}"
+		slow_ellipsis
+		Launchy.open(chart_url)
+		sleep(0.5)
+
 	end
 
 
@@ -404,18 +419,18 @@ class AirportFinder::CLI
 
 	# end
 
-	def show_chart(airport)
-		# http://vfrmap.com/?type=vfrc&lat=41.151&lon=-81.415&zoom=10
-		latlong = airport.details[:Location]["Lat/Long: "][2].split(" / ")
-		lat = latlong[0].to_f
-		long = latlong[1].to_f
-		chart_url = "http://vfrmap.com/?type=vfrc&lat=#{lat}&lon=#{long}&zoom=10"
-		print "Opening chart for #{airport.name}"
-		slow_ellipsis
-		Launchy.open(chart_url)
-		sleep(1)
+	# def show_chart(airport)
+	# 	# http://vfrmap.com/?type=vfrc&lat=41.151&lon=-81.415&zoom=10
+	# 	latlong = airport.details[:Location]["Lat/Long: "][2].split(" / ")
+	# 	lat = latlong[0].to_f
+	# 	long = latlong[1].to_f
+	# 	chart_url = "http://vfrmap.com/?type=vfrc&lat=#{lat}&lon=#{long}&zoom=10"
+	# 	print "Opening chart for #{airport.name}"
+	# 	slow_ellipsis
+	# 	Launchy.open(chart_url)
+	# 	sleep(1)
 
-	end
+	# end
 
 	# def show_runway_info(airport)
 	# 	rws = airport.runways
