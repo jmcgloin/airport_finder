@@ -16,7 +16,7 @@ class Search
 	end
 
 	def self.find_or_create(place, radius)
-		#look for a past search MAKE SURE TO CATCH  REDIRECT WHEN INVALID INPUT
+		#look for a past search
 		past_search = self.all.detect{ |search| search.place == place && search.radius == radius }
 		past_search ? past_search.results : create_new_search(place, radius).results
 	end

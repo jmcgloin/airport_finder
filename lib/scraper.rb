@@ -18,11 +18,10 @@ class Scraper
 			end
 			return_data
 		else
-			[]
+			[] # return an empty array when the search results page is not returned
 		end
 
-
-	end # scrape_search_results
+	end
 
 
 	def scrape_airport_info(url)

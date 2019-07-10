@@ -20,17 +20,12 @@ class Airport
 	end
 
 	def self.find_or_create(identifier, name, url)
-		(self.all.detect{ |airport| airport.identifier == identifier } || self.create(identifier, name, url))
+		self.find(identifier) || self.create(identifier, name, url)
 	end
 
 	def self.create(identifier, name, url)
-		
-		ap = Airport.new(identifier, name)
-
 		details_array = Scraper.new.scrape_airport_info(url)
-		ap.make_details_hash(details_array)
-		ap
-
+		Airport.new(identifier, name).tap{ |airport| airport.make_details_hash(details_array) }
 	end
 
 	def make_details_hash(details_array)

@@ -23,6 +23,7 @@ class Runway
 	end
 
 	def self.create_runway_from_data(runway_names, runway_data, airport)
+		############## fix this:  use a hash instead of two arrays ###############
 		runway_dimensions = []
 		runway_surfaces = []
 		runway_data.children.each do |child|
