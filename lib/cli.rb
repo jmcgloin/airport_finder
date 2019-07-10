@@ -1,6 +1,6 @@
 class AirportFinder::CLI
 
-	attr_accessor :choice, :location, :matches, :airport
+	attr_accessor :choice, :location, :matches, :airport, :max_choice
 
 	
 	def radius=(radius = 20)
@@ -193,12 +193,13 @@ class AirportFinder::CLI
 	def select_from_matches_input
 
 		if self.choice != 'exit'
-			if self.choice.to_i == 0 || self.choice.to_i > self.matches.length
+			selection, self.choice = self.choice.to_i, nil
+			if selection == 0 || selection > self.matches.length
 				self.whoops
 				select_from_matches_prompt
 			else
-				selection = matches[choice.to_i - 1]
-				self.airport = Airport.find_or_create(selection[0].strip, selection[2].strip, selection[4])
+				selected_airport = matches[selection - 1]
+				self.airport = Airport.find_or_create(selected_airport[0].strip, selected_airport[2].strip, selected_airport[4])
 				learn_more_prompt
 			end
 		end
@@ -207,73 +208,92 @@ class AirportFinder::CLI
 
 	def learn_more_prompt
 
-		max_choice = airport.details.keys.count + 3
-		puts "\n #{airport.identifier} - #{airport.name}:"
-		airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
-		puts "#{max_choice - 2}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}Runways"
-		puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
-		puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
-		puts "\nWould you like to learn more about this airport?"
-		puts "Enter the number of the topic you want to know more about."
+		if self.choice != 'exit'
+			self.max_choice = self.airport.details.keys.count + 3
+			puts "\n #{self.airport.identifier} - #{self.airport.name}:"
+			self.airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+			puts "#{self.max_choice - 2}:#{' ' * (3 - (self.max_choice - 1).to_s.chars.count)}Runways"
+			puts "#{self.max_choice - 1}:#{' ' * (3 - (self.max_choice - 1).to_s.chars.count)}View on chart"
+			puts "#{self.max_choice}:#{' ' * (3 - self.max_choice.to_s.chars.count)}Done"
+			puts "\nEnter the number of the topic you want to know more about."
 
+			gets_and_hand_off(:learn_more_input)
+		end
+
+	end
+
+	def learn_more_input
+
+		if self.choice != 'exit'
+			
+			case self.choice
+			when (1..self.max_choice - 3)
+				display_details
+			when (self.max_choice - 2)
+				display_runway_info
+			when (self.max_choice - 1)
+				display_chart
+			when self.max_choice
+				print 'Returning to main menu'
+				slow_ellipsis
+				main_menu_prompt
+			else
+				self.whoops
+				learn_more_prompt
+			end
+
+		end
+	end
+
+	def display_details
+
+		category = self.airport.details.keys[self.choice - 1]
+		puts "\nShowing #{category}\n"
+		self.airport.details[category].each_pair.with_index do |(topic, data), i|
+			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if (choice != 4 && choice != 6)
+			puts "#{data}\n" if choice == 4
+			puts "#{topic}#{data}" if choice == 6
+		end
+	end
+
+	def display_runway_info
+		self.airport.runways.each.with_index(1) do |rw, i|
+			puts "\n#{i}: #{rw.name} is #{rw.dimensions} and is made of #{rw.surface}"
+		end
 	end
 
 
 
-
-
-
-
-
-
-	# def 
-
-
-	# def locate_airport
-
-	# 	ok_one = false
-	# 	ok_two = false
-
-	# 	while !ok_one do
-	# 		puts "\nPlease enter the city and state OR the zip code to search"
-	# 		puts "Example: 'Albuquerque, New Mexico'; Example: '90210'"
-
-	# 		self.place = gets.strip #sanatize this
-
-	# 		#maybe add a break to catch if 'exit' is entered in here
-
-	# 		puts "\nYou entered #{self.place}.  Is this ok? Enter 'y' or 'n'"
-
-	# 		ok_one = ok?
-
+# while !choice.to_i.between?(1,max_choice)
+	# 		self.whoops
+	# 		puts "Enter the number of the topic you want to know more about."
+	# 		choice = gets.strip
 	# 	end
-
-	# 	while !ok_two do
-
-	# 		puts "\nPlease enter the maximum search radius in nm"
-	# 		puts "Or press enter to accept the default of 20nm"
-	# 		puts "Min radius is 1nm. Max radius is 200nm"
-
-	# 		entry = gets.strip
-
-	# 		if entry == "" || entry == "0"
-	# 			self.radius = 20
-	# 			puts "\nSearch radius is #{radius}nm.  Is this ok? Enter 'y' or 'n'"
-	# 			ok_two = ok?
-	# 		elsif entry.to_i != 0
-	# 			self.radius = [entry.to_i, 200].min
-	# 			puts "\nSearch radius is #{radius}nm. Is this ok? Enter 'y' or 'n'"
-	# 			ok_two = ok?
-	# 		else
-	# 			self.whoops
+	# 	while choice.to_i != max_choice
+	# 		case choice.to_i
+	# 		when (1..max_choice - 3)
+	# 			show_details(airport.details, choice.to_i)
+	# 		when max_choice - 2
+	# 			show_runway_info(airport)
+	# 		when max_choice - 1
+	# 			show_chart(airport)
 	# 		end
-
-	# 		#maybe add a break to catch if 'exit' is entered in here
-				
+	# 		puts "\nWhat else would you like to see?"
+	# 		airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
+	# 		puts "#{max_choice - 2}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}Runways"
+	# 		puts "#{max_choice - 1}:#{' ' * (3 - (max_choice - 1).to_s.chars.count)}View on chart"
+	# 		puts "#{max_choice}:#{' ' * (3 - max_choice.to_s.chars.count)}Done"
+	# 		puts "\nEnter the number of the topic you want to know more about."
+	# 		choice = gets.strip
+	# 		while !choice.to_i.between?(1,max_choice)
+	# 			self.whoops
+	# 			puts "Enter the number of the topic you want to know more about."
+	# 			choice = gets.strip
+	# 		end
 	# 	end
+	# 	print "\nReturning to main menu"
+	# 	slow_ellipsis
 
-	# 	self.matches = airport_menu(Search.find_or_create(self.place, self.radius))
-	# end
 
 
 ################## refactor this section next ##########################
@@ -370,19 +390,19 @@ class AirportFinder::CLI
 
 	# end
 
-	def show_details(details, choice)
-		category = details.keys[choice - 1]
-		puts "\nShowing #{category}\n"
-		details[category].each_pair.with_index do |(topic, data), i|
-			puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if (choice != 4 && choice != 6)
-			puts "#{data}\n" if choice == 4
-			if choice == 6
-				# binding.pry
-				puts "#{topic}#{data}"
-			end
-		end
+	# def show_details(details, choice)
+	# 	category = details.keys[choice - 1]
+	# 	puts "\nShowing #{category}\n"
+	# 	details[category].each_pair.with_index do |(topic, data), i|
+	# 		puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if (choice != 4 && choice != 6)
+	# 		puts "#{data}\n" if choice == 4
+	# 		if choice == 6
+	# 			# binding.pry
+	# 			puts "#{topic}#{data}"
+	# 		end
+	# 	end
 
-	end
+	# end
 
 	def show_chart(airport)
 		# http://vfrmap.com/?type=vfrc&lat=41.151&lon=-81.415&zoom=10
@@ -397,10 +417,10 @@ class AirportFinder::CLI
 
 	end
 
-	def show_runway_info(airport)
-		rws = airport.runways
-		rws.each.with_index(1){ |rw, i| puts "\n#{i}: #{rw.name} is #{rw.dimensions} and is made of #{rw.surface}" }
-	end
+	# def show_runway_info(airport)
+	# 	rws = airport.runways
+	# 	rws.each.with_index(1){ |rw, i| puts "\n#{i}: #{rw.name} is #{rw.dimensions} and is made of #{rw.surface}" }
+	# end
 
 ## End locate airport chain
 
