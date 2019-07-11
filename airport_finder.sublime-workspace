@@ -4,16 +4,48 @@
 		"selected_items":
 		[
 			[
+				"display",
+				"display_matches"
+			],
+			[
+				"main",
+				"main_menu_prompt"
+			],
+			[
+				"learn",
+				"learn_more_prompt"
+			],
+			[
+				"max",
+				"max_choice"
+			],
+			[
+				"se",
+				"select_from_matches_input"
+			],
+			[
+				"select_from_matches_",
+				"select_from_matches_prompt"
+			],
+			[
+				"matches",
+				"matches_input"
+			],
+			[
+				"select_from",
+				"select_from_matches_prompt"
+			],
+			[
+				"matc",
+				"matches_input"
+			],
+			[
 				"che",
 				"check_matches"
 			],
 			[
 				"choo",
 				"choose_location_prompt"
-			],
-			[
-				"main",
-				"main_menu_input"
 			],
 			[
 				"choose",
@@ -122,10 +154,6 @@
 			[
 				"ide",
 				"identifier"
-			],
-			[
-				"learn",
-				"learn_more"
 			],
 			[
 				"airpo",
@@ -303,7 +331,7 @@
 			"file": "lib/airport.rb",
 			"settings":
 			{
-				"buffer_size": 2959,
+				"buffer_size": 2922,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -312,7 +340,7 @@
 			"file": "lib/runway.rb",
 			"settings":
 			{
-				"buffer_size": 1256,
+				"buffer_size": 1333,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -357,7 +385,7 @@
 			"file": "lib/cli.rb",
 			"settings":
 			{
-				"buffer_size": 9416,
+				"buffer_size": 7494,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -366,7 +394,7 @@
 			"file": "lib/search.rb",
 			"settings":
 			{
-				"buffer_size": 686,
+				"buffer_size": 638,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -375,7 +403,7 @@
 			"file": "lib/scraper.rb",
 			"settings":
 			{
-				"buffer_size": 1402,
+				"buffer_size": 1446,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -626,6 +654,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"selection",
+			"self.choice",
+			"topic",
+			"self.choice",
 			"decision",
 			"message",
 			"j",
@@ -658,7 +690,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -667,15 +699,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2959,
+						"buffer_size": 2922,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2169,
-								2169
+								622,
+								622
 							]
 						],
 						"settings":
@@ -684,10 +716,10 @@
 							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 459.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -696,15 +728,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1256,
+						"buffer_size": 1333,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								516,
-								516
+								664,
+								664
 							]
 						],
 						"settings":
@@ -712,10 +744,10 @@
 							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 255.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -743,7 +775,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -759,8 +791,8 @@
 						"selection":
 						[
 							[
-								85,
-								85
+								245,
+								245
 							]
 						],
 						"settings":
@@ -771,7 +803,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -801,7 +833,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -830,7 +862,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -839,15 +871,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9416,
+						"buffer_size": 7494,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								5169,
+								5169
 							]
 						],
 						"settings":
@@ -856,10 +888,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3570.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -868,44 +900,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 686,
+						"buffer_size": 638,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								506,
-								506
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "lib/scraper.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1402,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								549,
-								549
+								237,
+								237
 							]
 						],
 						"settings":
@@ -918,6 +921,35 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/scraper.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1446,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								767,
+								767
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
