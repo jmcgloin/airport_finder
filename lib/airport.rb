@@ -28,8 +28,8 @@ class Airport
 		Airport.new(identifier, name).tap{ |airport| airport.make_details_hash(details_array) }
 	end
 
-	def create_runway(runway_names, runways_table)
-		Runway.create_runway_from_data(runway_names, runways_table, self)
+	def create_runway(runway_names, runways_info)
+		Runway.create_runway_from_data(runway_names, runways_info, self)
 	end
 
 	def create_details_keys(headings)
@@ -57,12 +57,19 @@ class Airport
 
 	end
 
+	def make_remarks(remarks)
+
+		remarks.select{ |remark| remark.text.strip != "" }.each.with_index(1) do |remark, i|
+			details[details.keys[6]][i.to_s] = remark.text
+		end
+
+	end
+
 	def make_details_hash(details_array)
 ################### HOW TO REFACTOR THIS??????? ############################
 # one method that does the logical checking and calls other method to do the iterating/assigning/returning
 		headings = details_array[0]
-		content_table = details_array[2]
-		more_info =  details_array[4]
+		content = details_array[2]
 
 		create_runway(details_array[1], details_array[3])
 
@@ -70,12 +77,15 @@ class Airport
 
 		create_details_keys(headings)
 
-		j = 0
+		make_remarks(content[6].children)
+
+		# binding.pry ## look at content.text... 
 		for i in (0..self.details.keys.count - 1) do 
 			
-			filtered_content = content_table[j].children.select{ |child| child.text.strip != "" }
+			filtered_content = content[i].children.select{ |child| child.text.strip != "" }
 			filtered_content.each.with_index do |subsection, k|
-				if i != 3 && i != 5
+				# binding.pry if i == 6
+				if ![3,5,6].include?(i) # i != 3 && i != 5 && i!= 6
 					## main details
 					section_heading = subsection.children[0].text
 					section_content = subsection.children[1].children.map do |el|
@@ -101,14 +111,12 @@ class Airport
 				elsif i == 5
 					ops_stats_details(subsection)
 				end
-				if i != 5
+				if ![5,6].include?(i)
 					# creates the hash for details except operational statistics
 					details[details.keys[i]][section_heading] = section_content
 				end
 
 			end
-			j += 1
-			
 		end
 	end
 end

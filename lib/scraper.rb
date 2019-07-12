@@ -26,16 +26,16 @@ class Scraper
 
 	def scrape_airport_info(url)
 		
+		## look at the names here.  can they be  more meaningful?
 		details = {}
 		search_url = "http://www.airnav.com" + url
 		data = get_data(search_url)
-		headings = data.css("a + h3")
-		subheadings = data.css("h4")
-		content_table = data.css("a + h3 + table")
-		runways_table = data.css("h4 + table")
-		more_info = data.css(".wl")
+		headings = data.css("a + h3") #these are actually  headings, pretty good name
+		runway_subheadings = data.css("h4")
+		content = data.css("a + h3 + table") # these tables contain the main bulk of the content excluding the runway info
+		runways_info = data.css("h4 + table") # these table contain the runway info
 
-		[headings, subheadings, content_table, runways_table,  more_info]
+		[headings, runway_subheadings, content, runways_info]
 
 	end # scrape_airport_info
 
