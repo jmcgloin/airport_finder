@@ -112,5 +112,6 @@ class Airport
 
 			end
 		end
+		# binding.pry
 	end
 end

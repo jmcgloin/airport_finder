@@ -233,7 +233,7 @@ class AirportFinder::CLI
 					display_chart
 				else
 					self.whoops
-					learn_more_prompt
+					# learn_more_prompt
 				end
 				learn_more_prompt
 
@@ -291,7 +291,40 @@ class AirportFinder::CLI
 
 ## Begin plan route chain
 	def plan_route
-		puts "planning"
+		
+		if Airport.all.count == 0
+			## take the user to search for an airport
+		else
+			## give the option to search from  Airport.all or search for a new airport
+			puts "Departure airport:"
+			puts "Here are your searches this session:"
+			## list them here with indecies and ad an option for a new search
+			puts "Would you like to use one of these or search for a new departure airport?"
+			puts "Enter your choice"
+			self.max_choice = Airport.all.count
+			gets_and_hand_off(:new_or_old)
+		end
+	end
+
+	def new_or_old
+
+		if self.choice.to_i == 0
+			self.whoops
+			plan_route
+		else
+			 
+			if self.choice.to_i === self.max_choice
+				##  take the user to search for an airport
+			else
+				self.airport = Airport.all[self.choice.to_i - 1]
+			end
+			get_lat_long
+		end
+
+	end
+
+	def get_lat_long
+		self.airport.details[:Location]["Lat/Long: "][3].split(' / ').to_f
 	end
 
 ## End plan route chain
