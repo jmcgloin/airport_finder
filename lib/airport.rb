@@ -40,6 +40,23 @@ class Airport
 		end
 	end
 
+	def ops_stats_details(subsection)
+
+		trs = subsection.css("tr")
+		trs.each do |tr|
+			if tr.children[0]
+				if tr.children[2]
+					details[details.keys[5]][tr.children[0].text] = tr.children[2].text
+				elsif tr.children[1]
+					details[details.keys[5]][tr.children[0].text] = tr.children[1].text if tr.children[1]
+				else
+					details[details.keys[5]][tr.children[0].text] = ""
+				end
+			end
+		end
+
+	end
+
 	def make_details_hash(details_array)
 ################### HOW TO REFACTOR THIS??????? ############################
 # one method that does the logical checking and calls other method to do the iterating/assigning/returning
@@ -59,12 +76,14 @@ class Airport
 			filtered_content = content_table[j].children.select{ |child| child.text.strip != "" }
 			filtered_content.each.with_index do |subsection, k|
 				if i != 3 && i != 5
+					## main details
 					section_heading = subsection.children[0].text
 					section_content = subsection.children[1].children.map do |el|
 						el.text.gsub(/\u00a0/, '')
 					end.select{ |et| et.strip != "" }
 				elsif i == 3
 					if k == 0
+						## radio nav details
 						sec_split = subsection.text.split(/\u00a0{2}/)
 						section_heading = "   "
 						section_content = " #{sec_split[0]} | #{sec_split[1]}               |"
@@ -80,24 +99,11 @@ class Airport
 						section_content += " #{sec_split[2]}#{" " * (7 - sec_split[2].chars.count)}| #{sec_split[3]}"
 					end
 				elsif i == 5
-					trs = subsection.css("tr")
-					section_heading = []
-					section_content = []
-					trs.each do |tr|
-						section_heading << tr.children[0].text if tr.children[0]
-						if tr.children[2]
-							section_content << tr.children[2].text
-						elsif tr.children[1]
-							section_content << tr.children[1].text
-						else
-							section_content << ""
-						end
-					end
+					ops_stats_details(subsection)
 				end
 				if i != 5
+					# creates the hash for details except operational statistics
 					details[details.keys[i]][section_heading] = section_content
-				else
-					section_heading.each.with_index{ |sh, m| details[details.keys[i]][sh] = section_content[m]}
 				end
 
 			end
