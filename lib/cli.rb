@@ -13,15 +13,6 @@ class AirportFinder::CLI
 		@radius
 	end
 
-	def initialize
-
-		@place = ""
-		@choice = nil
-		@matches = []
-		@airport = nil
-
-	end
-
 	def welcome
 
 			system "clear" # add this to a few locations to keep the screen clean TODO-TIME
@@ -258,11 +249,6 @@ class AirportFinder::CLI
 		system "clear"
 		puts "\nShowing #{category} for #{self.airport.name}\n\n"
 		self.airport.details[category].each_pair.with_index do |(topic, data), i|
-			# puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}" if !([4,6,7].include?choice_int)
-			# puts "#{data}\n" if choice_int == 4
-			# puts "#{topic}#{data}" if choice_int == 6
-			# binding.pry
-			# puts "#{topic}:#{" " * ( 3 - topic.chars.count)}#{data}" if choice_int == 7
 			case choice_int
 			when 4
 				puts "#{data}\n"
@@ -299,14 +285,6 @@ class AirportFinder::CLI
 		sleep(1)
 
 	end
-
-	# def display_remarks
-
-	# 	system "clear"
-	# 	puts "\n\nShowing remarks for #{self.airport.name}\n"
-	# 	self.airport.details[:"Additional Remarks"].each_pair
-
-	# end
 
 ## End locate airport chain
 
