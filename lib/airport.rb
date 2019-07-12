@@ -65,18 +65,28 @@ class Airport
 
 	end
 
+	def make_navaids(subsection, k)
+
+		if k == 0
+			sec_split = subsection.text.split(/\u00a0{2}/)
+			["   "," #{sec_split[0]} | #{sec_split[1]} #{sec_split[2]}   | #{sec_split[3]}\n #{'-' * 59}"]
+		else
+			sec_split = subsection.children.map do |el|
+				el.text.gsub(/\u00a0/, '').strip
+			end.select{ |el| el != "" }
+			[k.to_s + ":" + (" " * (3 - k.to_s.chars.count)),
+				" #{sec_split[0]}#{" " * (20 - sec_split[0].chars.count)}|\
+				 #{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|\
+				 #{sec_split[2]}#{" " * (7 - sec_split[2].chars.count)}| #{sec_split[3]}"]
+		end
+	end
+
 	def make_details_hash(details_array)
-################### HOW TO REFACTOR THIS??????? ############################
-# one method that does the logical checking and calls other method to do the iterating/assigning/returning
 		headings = details_array[0]
 		content = details_array[2]
-
 		create_runway(details_array[1], details_array[3])
-
 		section_heading, section_content = "", []
-
 		create_details_keys(headings)
-
 		make_remarks(content[6].children)
 
 		# binding.pry ## look at content.text... 
@@ -84,30 +94,14 @@ class Airport
 			
 			filtered_content = content[i].children.select{ |child| child.text.strip != "" }
 			filtered_content.each.with_index do |subsection, k|
-				# binding.pry if i == 6
-				if ![3,5,6].include?(i) # i != 3 && i != 5 && i!= 6
+				if ![3,5,6].include?(i)
 					## main details
 					section_heading = subsection.children[0].text
 					section_content = subsection.children[1].children.map do |el|
 						el.text.gsub(/\u00a0/, '')
 					end.select{ |et| et.strip != "" }
 				elsif i == 3
-					if k == 0
-						## radio nav details
-						sec_split = subsection.text.split(/\u00a0{2}/)
-						section_heading = "   "
-						section_content = " #{sec_split[0]} | #{sec_split[1]}               |"
-						section_content += " #{sec_split[2]}   | #{sec_split[3]}"
-						section_content += "\n #{'-' * 59}"
-					else
-						sec_split = subsection.children.map do |el|
-							el.text.gsub(/\u00a0/, '').strip
-						end.select{ |el| el != "" }
-						section_heading = k.to_s + ":" + (" " * (3 - k.to_s.chars.count))
-						section_content = " #{sec_split[0]}#{" " * (20 - sec_split[0].chars.count)}|"
-						section_content += " #{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|"
-						section_content += " #{sec_split[2]}#{" " * (7 - sec_split[2].chars.count)}| #{sec_split[3]}"
-					end
+					section_heading, section_content = make_navaids(subsection, k)
 				elsif i == 5
 					ops_stats_details(subsection)
 				end
