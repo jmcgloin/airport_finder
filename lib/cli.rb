@@ -233,7 +233,6 @@ class AirportFinder::CLI
 					display_chart
 				else
 					self.whoops
-					# learn_more_prompt
 				end
 				learn_more_prompt
 
