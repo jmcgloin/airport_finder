@@ -28,6 +28,10 @@ class Airport
 		Airport.new(identifier, name).tap{ |airport| airport.make_details_hash(details_array) }
 	end
 
+	def self.list_all
+		self.all.each.with_index{ |airport, i| puts  "#{i}:#{" " * (3 - i.to_s.chars.count)}#{airport}" }
+	end
+
 	def create_runway(runway_names, runways_info)
 		Runway.create_runway_from_data(runway_names, runways_info, self)
 	end
@@ -69,15 +73,16 @@ class Airport
 
 		if k == 0
 			sec_split = subsection.text.split(/\u00a0{2}/)
-			["   "," #{sec_split[0]} | #{sec_split[1]} #{sec_split[2]}   | #{sec_split[3]}\n #{'-' * 59}"]
+			["   "," #{sec_split[0]} | #{sec_split[1]}#{" " * 14 } | #{sec_split[2]}   | #{sec_split[3]}\n #{'-' * 59}"]
 		else
 			sec_split = subsection.children.map do |el|
 				el.text.gsub(/\u00a0/, '').strip
-			end.select{ |el| el != "" }
+			end.select{ |el| el.strip != "" }
 			[k.to_s + ":" + (" " * (3 - k.to_s.chars.count)),
-				" #{sec_split[0]}#{" " * (20 - sec_split[0].chars.count)}|\
-				 #{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|\
-				 #{sec_split[2]}#{" " * (7 - sec_split[2].chars.count)}| #{sec_split[3]}"]
+				" #{sec_split[0]}#{" " * (20 - sec_split[0].chars.count)}|" + 
+				" #{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|" +
+				"#{sec_split[2]}#{" " * (8 - sec_split[2].chars.count)}|" +
+				" #{sec_split[3]}"]
 		end
 	end
 

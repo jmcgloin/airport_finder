@@ -25,13 +25,14 @@ class AirportFinder::CLI
 	def main_menu_prompt
 
 		while choice != "exit"
-			puts "\nWhat would you like to do?"
-			puts "Please select from the following choices:"
-			puts "1: Locate an airport by city/state or zip code"
-			puts "2: Plan a route between two airports"
-			puts "Enter the number of your choice or type 'exit' to exit."
+			# puts "\nWhat would you like to do?"
+			# puts "Please select from the following choices:"
+			# puts "1: Locate an airport by city/state or zip code"
+			# puts "2: Plan a route between two airports"
+			# puts "Enter the number of your choice or type 'exit' to exit."
 
-			gets_and_hand_off(:main_menu_input)
+			# gets_and_hand_off(:main_menu_input)
+			choose_location_prompt
 		end
 
 		exit
@@ -58,6 +59,7 @@ class AirportFinder::CLI
 		if choice != 'exit'
 			puts "\nPlease enter the city and state OR the zip code to search"
 			puts "Example: 'Albuquerque, New Mexico'; Example: '90210'"
+			puts "Or type 'exit' to exit."
 
 			gets_and_hand_off(:choose_location_input)
 		end
@@ -85,7 +87,7 @@ class AirportFinder::CLI
 	def choose_radius_prompt
 
 		if choice != 'exit'
-			puts "\nPlease enter the maximum search radius in nm"
+			puts "\nPlease enter the maximum search radius in nm (integers only)"
 			puts "Or press enter to accept the default of 20nm"
 			puts "Min radius is 20nm. Max radius is 200nm"
 
@@ -185,7 +187,7 @@ class AirportFinder::CLI
 			system "clear"
 			if self.choice.to_i == 0 || self.choice.to_i > self.matches.length
 				self.whoops
-				select_from_matches_prompt
+				display_matches
 			else
 				selected_airport = matches[self.choice.to_i - 1]
 				self.airport = Airport.find_or_create(selected_airport[0].strip, selected_airport[2].strip, selected_airport[4])
@@ -290,35 +292,27 @@ class AirportFinder::CLI
 
 ## Begin plan route chain
 	def plan_route
-		
-		if Airport.all.count == 0
-			## take the user to search for an airport
+		departure_airport
+	end
+
+	def departure_airport
+		puts "Departure airport:"
+		if  Airport.all.count == 0
+			## take user to search for an airport
+			## set the chosen airport to self.airport
 		else
-			## give the option to search from  Airport.all or search for a new airport
-			puts "Departure airport:"
-			puts "Here are your searches this session:"
-			## list them here with indecies and ad an option for a new search
-			puts "Would you like to use one of these or search for a new departure airport?"
-			puts "Enter your choice"
-			self.max_choice = Airport.all.count
-			gets_and_hand_off(:new_or_old)
+			## list the past search airport indices, names, identifiers
+			## give option to choose from the list or choose to search for a new airport
+			Airport.list_all
+			puts "#{Airport.all.count + 1}:#{" " * (3 - (Airport.all.count + 1)).to_s.chars.count }Choose a new airport"
 		end
 	end
 
-	def new_or_old
+	def arrival_airport
+		puts "Arrival airport:"
+	end
 
-		if self.choice.to_i == 0
-			self.whoops
-			plan_route
-		else
-			 
-			if self.choice.to_i === self.max_choice
-				##  take the user to search for an airport
-			else
-				self.airport = Airport.all[self.choice.to_i - 1]
-			end
-			get_lat_long
-		end
+	def new_or_old
 
 	end
 
@@ -335,6 +329,10 @@ class AirportFinder::CLI
 		self.choice = gets.strip.downcase
 		send(function) if (function && self.choice != "exit")
 
+	end
+
+	def check_for_float(value)
+		value.to_i == value.to_f
 	end
 
 	def slow_ellipsis

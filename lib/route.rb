@@ -31,4 +31,8 @@ class Route
 
 	end
 
+	def get_lat_long
+
+	end
+
 end
