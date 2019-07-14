@@ -3,9 +3,14 @@ class AirportFinder::CLI
 	attr_accessor :choice, :location, :matches, :airport, :max_choice
 
 	
-	def radius=(radius = 20)
-
-		@radius = [radius.to_i, 20].max
+	def radius=(radius)
+		@radius = 20 if @radius.to_i == 0
+		if radius.to_i == 0
+			@radius = 20
+		else
+			@radius = radius.to_i
+		end
+		# @radius = [radius.to_i, 20].max
 		@radius = [@radius, 200].min
 	end
 
@@ -58,7 +63,7 @@ class AirportFinder::CLI
 	def choose_location_prompt
 		if choice != 'exit'
 			puts "\nPlease enter the city and state OR the zip code to search"
-			puts "Example: 'Albuquerque, New Mexico'; Example: '90210'"
+			puts  "Example: 'Albuquerque, New Mexico'; Example: '90210'"
 			puts "Or type 'exit' to exit."
 
 			gets_and_hand_off(:choose_location_input)
@@ -69,13 +74,14 @@ class AirportFinder::CLI
 	def choose_location_input
 
 		if choice != 'exit'
-			self.location, self.choice = self.choice, nil
+			self.location = self.choice
 			case self.location
 			when ""
 				choose_location_prompt
 			else
 				puts "\nThe location is #{self.location}.  Is this ok?"
 				puts "Please enter 'y' for yes or 'n' for no."
+				print '(y) '
 
 				gets_and_hand_off(:is_this_ok?) ? choose_radius_prompt : choose_location_prompt
 
@@ -89,7 +95,7 @@ class AirportFinder::CLI
 		if choice != 'exit'
 			puts "\nPlease enter the maximum search radius in nm (integers only)"
 			puts "Or press enter to accept the default of 20nm"
-			puts "Min radius is 20nm. Max radius is 200nm"
+			puts "Min radius is 1nm. Max radius is 200nm"
 
 			gets_and_hand_off(:choose_radius_input)
 		end
@@ -99,17 +105,12 @@ class AirportFinder::CLI
 	def choose_radius_input
 
 		if choice != 'exit'
-			self.radius, self.choice = self.choice, nil
-			case self.radius
-			when ""
-				choose_location_prompt
-			else
-				puts "\nThe radius is #{self.radius}.  Is this ok?"
-				puts "Please enter 'y' for yes or 'n' for no."
+			self.radius = self.choice
+			puts "\nThe radius is #{self.radius.to_s}.  Is this ok?"
+			puts "Please enter 'y' for yes or 'n' for no."
+			print '(y) '
 
-				gets_and_hand_off(:is_this_ok?) ? get_matches : choose_radius_prompt
-
-			end
+			gets_and_hand_off(:is_this_ok?) ? get_matches : choose_radius_prompt
 		end
 
 	end
@@ -127,7 +128,8 @@ class AirportFinder::CLI
 			system "clear"	
 			if self.matches.length == 0
 				puts "\nYour search of #{self.location} with a radius of #{self.radius} did not return any matches."
-				puts "Would you like to try again? Enter 'y' for yes or 'n' for no.(y)"
+				puts "Would you like to try again? Enter 'y' for yes or 'n' for no."
+				print "(y) "
 
 				gets_and_hand_off
 
@@ -200,11 +202,23 @@ class AirportFinder::CLI
 	def learn_more_prompt
 
 		if self.choice != 'exit'
+			self.choice = nil if caller[0].include? "select_from_matches_input"
 			self.max_choice = self.airport.details.keys.count + 4
 			puts "\n #{self.airport.identifier} - #{self.airport.name}:\n\n"
-			self.airport.details.keys.each.with_index(1){ |key, i| puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"}
-			puts "#{self.max_choice - 3}:#{' ' * (3 - (self.max_choice - 3).to_s.chars.count)}Runways"
-			puts "#{self.max_choice - 2}:#{' ' * (3 - (self.max_choice - 2).to_s.chars.count)}View on chart"
+			self.airport.details.keys.each.with_index(1) do |key, i|
+				if self.choice.to_i == i
+					puts "#{i.to_s.red}:#{' ' * (3 - i.to_s.chars.count)}#{key}"
+				else
+					puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{key}"
+				end
+			end
+			max_less_three_str = "#{(self.max_choice - 3) == self.choice.to_i ? (self.max_choice - 3).to_s.red : (self.max_choice - 3)}"
+			max_less_three_str += ":#{' ' * (3 - (self.max_choice - 3).to_s.chars.count)}Runways"
+			max_less_two_str = "#{(self.max_choice - 2) == self.choice.to_i ? (self.max_choice - 2).to_s.red : (self.max_choice - 2)}"
+			max_less_two_str += ":#{' ' * (3 - (self.max_choice - 2).to_s.chars.count)}View on chart"
+			# puts "#{(self.max_choice - 3) == self.choice ? (self.max_choice - 3).red : (self.max_choice - 3)}:#{' ' * (3 - (self.max_choice - 3).to_s.chars.count)}Runways"
+			puts max_less_three_str
+			puts max_less_two_str
 			puts "#{self.max_choice - 1}:#{' ' * (3 - (self.max_choice - 1).to_s.chars.count)}Choose another aiport from this search"
 			puts "#{self.max_choice}:#{' ' * (3 - self.max_choice.to_s.chars.count)}Back to main menu"
 			puts "\nEnter the number of the topic you want to know more about."

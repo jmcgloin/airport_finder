@@ -64,7 +64,7 @@ class Airport
 	def make_remarks(remarks)
 
 		remarks.select{ |remark| remark.text.strip != "" }.each.with_index(1) do |remark, i|
-			details[details.keys[6]][i.to_s] = remark.text
+			details[details.keys[6]][i.to_s] = remark.text if details.keys[6]
 		end
 
 	end
@@ -94,7 +94,7 @@ class Airport
 		create_details_keys(headings)
 		make_remarks(content[6].children)
 
-		# binding.pry ## look at content.text... 
+		# binding.pry ## look at content.	text... 
 		for i in (0..self.details.keys.count - 1) do 
 			
 			filtered_content = content[i].children.select{ |child| child.text.strip != "" }

@@ -2,6 +2,7 @@ require 'pry'
 require 'nokogiri'
 require 'open-uri'
 require 'launchy'
+require 'colorize'
 
 require 'open3'
 

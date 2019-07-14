@@ -23,7 +23,7 @@ class Search
 
 	def self.create_new_search(place, radius)
 		new_search = Search.new(place, radius)
-		new_search.results = Scraper.new.scrape_search_results(place, radius) #TODO wire this up
+		new_search.results = Scraper.new.scrape_search_results(place, radius)
 		self.all << new_search
 		new_search
 	end
