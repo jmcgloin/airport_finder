@@ -43,20 +43,23 @@ class AirportFinder::CLI
 		exit
 	end
 
-	def main_menu_input
-		
-		if self.choice != 'exit'
-			case self.choice
-			when "1"
-				choose_location_prompt # locate_airport
-			when "2"
-				plan_route
-			else
-				self.whoops
-			end
-		end
+## commented out code above and below  here is preserved in the event  route (or other)
+## functionality is added
 
-	end
+	# def main_menu_input
+		
+	# 	if self.choice != 'exit'
+	# 		case self.choice
+	# 		when "1"
+	# 			choose_location_prompt # locate_airport
+	# 		when "2"
+	# 			plan_route
+	# 		else
+	# 			self.whoops
+	# 		end
+	# 	end
+
+	# end
 
 ### Begin locate airport chain
 
