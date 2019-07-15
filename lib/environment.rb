@@ -3,7 +3,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'launchy'
 require 'colorize'
-
 require 'open3'
 
 require_relative "./airport_finder/version"

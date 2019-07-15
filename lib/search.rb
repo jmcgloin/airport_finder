@@ -21,7 +21,6 @@ class Search
 	end
 
 	def self.create_new_search(place, radius)
-		binding.pry
 		Search.new(place, radius).tap do |new_search|
 			new_search.results = Scraper.new.scrape_search_results(place, radius)
 			self.all << new_search

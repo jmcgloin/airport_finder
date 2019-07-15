@@ -99,6 +99,7 @@ class AirportFinder::CLI
 			puts "\nPlease enter the maximum search radius in nm (integers only)"
 			puts "Or press enter to accept the default of 20nm"
 			puts "Min radius is 1nm. Max radius is 200nm"
+			print '(20)'
 
 			gets_and_hand_off(:choose_radius_input)
 		end
@@ -164,11 +165,16 @@ class AirportFinder::CLI
 			puts "#: Identifier | City                                    | Name"
 			# 14|
 			matches.each.with_index(1) do |match, i|
-				line = []
-				line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
-				line << (match[1] + (" " * 40)).slice(0,40) + "| "
-				line << (match[2] + (" " * 50)).slice(0,50) + "\n"
-				puts line.join("")
+				# line = []
+				# line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
+				# line << (match[1] + (" " * 40)).slice(0,40) + "| "
+				# line << (match[2] + (" " * 50)).slice(0,50) + "\n"
+				# puts line.join("")
+				binding.pry
+				puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{match[0]}#{' ' * 13}".slice(0,14) + '| ' +
+				"#{match[1]}#{' ' * 40}".slice(0,40) + '| ' +
+				"#{match[2]}#{' ' * 50}".slice(0,50) + "\n"  #if match[3].split(" ")[0].to_f <= self.raduis
+
 			end
 
 			select_from_matches_prompt

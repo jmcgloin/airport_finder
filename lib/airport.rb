@@ -73,14 +73,14 @@ class Airport
 
 		if k == 0
 			sec_split = subsection.text.split(/\u00a0{2}/)
-			["   "," #{sec_split[0]} | #{sec_split[1]}#{" " * 14 } | #{sec_split[2]}   | #{sec_split[3]}\n #{'-' * 59}"]
+			["   "," #{sec_split[0]} | #{sec_split[1]}#{" " * 14 }      | #{sec_split[2]}   | #{sec_split[3]}\n #{'-' * 59}"]
 		else
 			sec_split = subsection.children.map do |el|
 				el.text.gsub(/\u00a0/, '').strip
 			end.select{ |el| el.strip != "" }
 			[k.to_s + ":" + (" " * (3 - k.to_s.chars.count)),
 				" #{sec_split[0]}#{" " * (20 - sec_split[0].chars.count)}|" + 
-				" #{sec_split[1]}#{" " * (23 - sec_split[1].chars.count)}|" +
+				" #{sec_split[1]}#{" " * [(28 - sec_split[1].chars.count),0].max}|" +
 				"#{sec_split[2]}#{" " * (8 - sec_split[2].chars.count)}|" +
 				" #{sec_split[3]}"]
 		end
