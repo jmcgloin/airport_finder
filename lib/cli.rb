@@ -121,7 +121,7 @@ class AirportFinder::CLI
 
 	def get_matches
 
-		self.matches = Search.find_or_create(self.location)
+		self.matches = Search.find_or_create(self.location).select{ |match| match[3].split(" ")[0].to_f <= self.radius}
 		matches_input
 
 	end
@@ -129,7 +129,8 @@ class AirportFinder::CLI
 	def matches_input
 
 		if self.choice != 'exit'
-			system "clear"	
+			system "clear"
+			self.matches
 			if self.matches.length == 0
 				puts "\nYour search of #{self.location} with a radius of #{self.radius} did not return any matches."
 				puts "Would you like to try again? Enter 'y' for yes or 'n' for no."
@@ -164,7 +165,7 @@ class AirportFinder::CLI
 			puts "\n\nHere are your matches\n\n"
 			puts "#: Identifier | City                                    | Name"
 			# 14|
-			matches.each.with_index(1) do |match, i|
+			self.matches.each.with_index(1) do |match, i|
 				# line = []
 				# line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
 				# line << (match[1] + (" " * 40)).slice(0,40) + "| "
@@ -173,7 +174,7 @@ class AirportFinder::CLI
 				# binding.pry
 				puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{match[0]}#{' ' * 13}".slice(0,14) + '| ' +
 				"#{match[1]}#{' ' * 40}".slice(0,40) + '| ' +
-				"#{match[2]}#{' ' * 50}".slice(0,50) + "\n" if match[3].split(" ")[0].to_f <= self.radius
+				"#{match[2]}#{' ' * 50}".slice(0,50) + "\n"
 
 			end
 

@@ -70,7 +70,6 @@ class Airport
 	end
 
 	def make_navaids(subsection, k)
-
 		if k == 0
 			sec_split = subsection.text.split(/\u00a0{2}/)
 			["   "," #{sec_split[0]} | #{sec_split[1]}#{" " * 14 }      | #{sec_split[2]}   | #{sec_split[3]}\n #{'-' * 59}"]
@@ -93,8 +92,6 @@ class Airport
 		section_heading, section_content = "", []
 		create_details_keys(headings)
 		make_remarks(content[6].children)
-
-		# binding.pry ## look at content.	text... 
 		for i in (0..self.details.keys.count - 1) do 
 			
 			filtered_content = content[i].children.select{ |child| child.text.strip != "" }
