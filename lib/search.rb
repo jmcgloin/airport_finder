@@ -4,10 +4,10 @@ class Search
 
 	attr_accessor :results, :place, :radius
 
-	def initialize(place, radius)
+	def initialize(place)
 
 		@place = place
-		@radius = radius
+		@radius = 200
 
 	end
 
@@ -15,19 +15,19 @@ class Search
 		@@all
 	end
 
-	def self.find_or_create(place, radius)
+	def self.find_or_create(place)
 		#look for a past search
-		(find(place, radius) || create_new_search(place, radius)).results
+		(find(place) || create_new_search(place)).results
 	end
 
-	def self.create_new_search(place, radius)
-		Search.new(place, radius).tap do |new_search|
-			new_search.results = Scraper.new.scrape_search_results(place, radius)
+	def self.create_new_search(place)
+		Search.new(place).tap do |new_search|
+			new_search.results = Scraper.new.scrape_search_results(place, new_search.radius)
 			self.all << new_search
 		end
 	end
-	def self.find(place, radius)
-		self.all.detect{|search| search.place == place && search.radius == radius}
+	def self.find(place)
+		self.all.detect{|search| search.place == place}
 	end
 
 end

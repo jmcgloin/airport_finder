@@ -121,7 +121,7 @@ class AirportFinder::CLI
 
 	def get_matches
 
-		self.matches = Search.find_or_create(self.location, self.radius)
+		self.matches = Search.find_or_create(self.location)
 		matches_input
 
 	end
@@ -170,10 +170,10 @@ class AirportFinder::CLI
 				# line << (match[1] + (" " * 40)).slice(0,40) + "| "
 				# line << (match[2] + (" " * 50)).slice(0,50) + "\n"
 				# puts line.join("")
-				binding.pry
+				# binding.pry
 				puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{match[0]}#{' ' * 13}".slice(0,14) + '| ' +
 				"#{match[1]}#{' ' * 40}".slice(0,40) + '| ' +
-				"#{match[2]}#{' ' * 50}".slice(0,50) + "\n"  #if match[3].split(" ")[0].to_f <= self.raduis
+				"#{match[2]}#{' ' * 50}".slice(0,50) + "\n" if match[3].split(" ")[0].to_f <= self.radius
 
 			end
 
