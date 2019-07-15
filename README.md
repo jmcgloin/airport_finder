@@ -1,5 +1,9 @@
 # AirportFinder
 
+general info
+
+built with
+
 ## Installation
 
 Fork and clone the repo from https://github.com/jmcgloin/airport_finder

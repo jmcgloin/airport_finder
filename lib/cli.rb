@@ -197,7 +197,7 @@ class AirportFinder::CLI
 
 		if self.choice != 'exit'
 			system "clear"
-			if self.choice.to_i == 0 || self.choice.to_i > self.matches.length
+			if self.choice.to_i <= 0 || self.choice.to_i > self.matches.length
 				self.whoops
 				display_matches
 			else
