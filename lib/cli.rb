@@ -71,8 +71,13 @@ class AirportFinder::CLI
 
 	def choose_radius_input
 		if choice != 'exit'
-			self.radius = self.choice
-			puts "\nThe radius is #{self.radius.to_s}.  Is this ok?"
+			self.radius = self.choice.to_i
+			if self.choice.to_i <= 0 || self.choice.to_i > 200
+				puts "\nThe search radius must be between 1nm and 200nm"
+				puts "The search radius has defaulted to 20nm.  Is this ok?"
+			else
+				puts "\nThe radius is #{self.radius}.  Is this ok?"
+			end
 			puts "Please enter 'y' for yes or 'n' for no."
 			print '(y) '
 			gets_and_hand_off(:is_this_ok?) ? get_matches : choose_radius_prompt
@@ -264,7 +269,7 @@ class AirportFinder::CLI
 		end
 		system "clear"
 	end
-	
+
 	def exit
 		puts "\n\n#{[
 			"Roger that!",
