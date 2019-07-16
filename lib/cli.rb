@@ -10,7 +10,6 @@ class AirportFinder::CLI
 		else
 			@radius = radius.to_i
 		end
-		# @radius = [radius.to_i, 20].max
 		@radius = [@radius, 200].min
 	end
 
@@ -20,46 +19,14 @@ class AirportFinder::CLI
 
 	def welcome
 
-			system "clear" # add this to a few locations to keep the screen clean TODO-TIME
+			system "clear"
 			puts "\nWelcome to Airport Finder!"
 			
-			main_menu_prompt
-
-	end
-
-	def main_menu_prompt
-
-		while choice != "exit"
-			# puts "\nWhat would you like to do?"
-			# puts "Please select from the following choices:"
-			# puts "1: Locate an airport by city/state or zip code"
-			# puts "2: Plan a route between two airports"
-			# puts "Enter the number of your choice or type 'exit' to exit."
-
-			# gets_and_hand_off(:main_menu_input)
 			choose_location_prompt
-		end
 
-		exit
+			exit
+
 	end
-
-## commented out code above and below  here is preserved in the event  route (or other)
-## functionality is added
-
-	# def main_menu_input
-		
-	# 	if self.choice != 'exit'
-	# 		case self.choice
-	# 		when "1"
-	# 			choose_location_prompt # locate_airport
-	# 		when "2"
-	# 			plan_route
-	# 		else
-	# 			self.whoops
-	# 		end
-	# 	end
-
-	# end
 
 ### Begin locate airport chain
 
@@ -82,8 +49,9 @@ class AirportFinder::CLI
 				self.whoops
 				choose_location_prompt
 			elsif (!self.location.match?(/^\d{5}$/) && !self.location.match?(/^[a-zA-Z]+\s*[a-zA-Z]*\,+\s*[a-zA-Z]{2}$/))
-				puts "Please use either a five digit zip code or city name with two letter state abbreviation"
+				puts "\nPlease use either a five digit zip code or city name with two letter state abbreviation"
 				puts "as in the following examples: 'Albuquerque, NM'; '90210'"
+				gets_and_hand_off(:choose_location_input)
 			else
 				puts "\nThe location is #{self.location}.  Is this ok?"
 				puts "Please enter 'y' for yes or 'n' for no."
@@ -141,7 +109,7 @@ class AirportFinder::CLI
 
 				gets_and_hand_off
 
-				case self.choice # gets_and_hand_off
+				case self.choice
 				when 'y', ''
 					self.choice = nil
 					choose_location_prompt
@@ -169,12 +137,6 @@ class AirportFinder::CLI
 			puts "#: Identifier | City                                    | Name"
 			# 14|
 			self.matches.each.with_index(1) do |match, i|
-				# line = []
-				# line << ("#{i}: #{match[0]}" + (" " * 13)).slice(0,14) + "| "
-				# line << (match[1] + (" " * 40)).slice(0,40) + "| "
-				# line << (match[2] + (" " * 50)).slice(0,50) + "\n"
-				# puts line.join("")
-				# binding.pry
 				puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{match[0]}#{' ' * 13}".slice(0,14) + '| ' +
 				"#{match[1]}#{' ' * 40}".slice(0,40) + '| ' +
 				"#{match[2]}#{' ' * 50}".slice(0,50) + "\n"
@@ -229,7 +191,6 @@ class AirportFinder::CLI
 			max_less_three_str += ":#{' ' * (3 - (self.max_choice - 3).to_s.chars.count)}Runways"
 			max_less_two_str = "#{(self.max_choice - 2) == self.choice.to_i ? (self.max_choice - 2).to_s.red : (self.max_choice - 2)}"
 			max_less_two_str += ":#{' ' * (3 - (self.max_choice - 2).to_s.chars.count)}View on chart"
-			# puts "#{(self.max_choice - 3) == self.choice ? (self.max_choice - 3).red : (self.max_choice - 3)}:#{' ' * (3 - (self.max_choice - 3).to_s.chars.count)}Runways"
 			puts max_less_three_str
 			puts max_less_two_str
 			puts "#{self.max_choice - 1}:#{' ' * (3 - (self.max_choice - 1).to_s.chars.count)}Choose another aiport from this search"
@@ -247,7 +208,7 @@ class AirportFinder::CLI
 			if self.choice.to_i == self.max_choice
 				print 'Returning to main menu'
 				slow_ellipsis
-				# main_menu_prompt
+				choose_location_prompt
 			elsif (self.choice.to_i == self.max_choice - 1)
 				system "clear"
 				display_matches
@@ -315,41 +276,6 @@ class AirportFinder::CLI
 	end
 
 ## End locate airport chain
-
-
-## Begin plan route chain
-	def plan_route
-		departure_airport
-	end
-
-	def departure_airport
-		puts "Departure airport:"
-		if  Airport.all.count == 0
-			## take user to search for an airport
-			## set the chosen airport to self.airport
-		else
-			## list the past search airport indices, names, identifiers
-			## give option to choose from the list or choose to search for a new airport
-			Airport.list_all
-			puts "#{Airport.all.count + 1}:#{" " * (3 - (Airport.all.count + 1)).to_s.chars.count }Choose a new airport"
-		end
-	end
-
-	def arrival_airport
-		puts "Arrival airport:"
-	end
-
-	def new_or_old
-
-	end
-
-	def get_lat_long
-		self.airport.details[:Location]["Lat/Long: "][3].split(' / ').to_f
-	end
-
-## End plan route chain
-
-## Instance and class variables/methods below
 
 	def gets_and_hand_off(function = false)
 

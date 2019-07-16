@@ -14,7 +14,7 @@ class Runway
 	end
 
 	def self.find(name, airport)
-		self.all.detect{ |rway| rway.name == name && rway.airport == airport }
+		self.all.detect{ |rw| rw.name == name && rw.airport == airport }
 	end
 
 	def self.find_or_create(name, airport)
