@@ -15,6 +15,7 @@ class Scraper
 			end
 			return_array
 		end
+		[]
 	end
 
 	def scrape_airport_info(identifier, name, url)
