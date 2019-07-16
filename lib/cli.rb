@@ -38,11 +38,9 @@ class AirportFinder::CLI
 
 			gets_and_hand_off(:choose_location_input)
 		end
-
 	end
 
 	def choose_location_input
-
 		if choice != 'exit'
 			self.location = self.choice
 			if self.location == ""
@@ -56,49 +54,39 @@ class AirportFinder::CLI
 				puts "\nThe location is #{self.location}.  Is this ok?"
 				puts "Please enter 'y' for yes or 'n' for no."
 				print '(y) '
-
 				gets_and_hand_off(:is_this_ok?) ? choose_radius_prompt : choose_location_prompt
-
 			end
 		end
-
 	end
 
 	def choose_radius_prompt
-
 		if choice != 'exit'
 			puts "\nPlease enter the maximum search radius in nm (integers only)"
 			puts "Or press enter to accept the default of 20nm"
 			puts "Min radius is 1nm. Max radius is 200nm"
 			print '(20)'
-
 			gets_and_hand_off(:choose_radius_input)
 		end
-
 	end
 
 	def choose_radius_input
-
 		if choice != 'exit'
 			self.radius = self.choice
 			puts "\nThe radius is #{self.radius.to_s}.  Is this ok?"
 			puts "Please enter 'y' for yes or 'n' for no."
 			print '(y) '
-
 			gets_and_hand_off(:is_this_ok?) ? get_matches : choose_radius_prompt
 		end
-
 	end
 
 	def get_matches
-
-		self.matches = Search.find_or_create(self.location).select{ |match| match[3].split(" ")[0].to_f <= self.radius}
+		self.matches = Search.find_or_create(self.location).compact.select do |match|
+			match[3].split(" ")[0].to_f <= self.radius
+		end
 		matches_input
-
 	end
 
 	def matches_input
-
 		if self.choice != 'exit'
 			system "clear"
 			self.matches
@@ -127,11 +115,9 @@ class AirportFinder::CLI
 				display_matches
 			end
 		end
-
 	end
 
 	def display_matches
-
 		if choice != 'exit'
 			puts "\n\nHere are your matches\n\n"
 			puts "#: Identifier | City                                    | Name"
@@ -140,26 +126,21 @@ class AirportFinder::CLI
 				puts "#{i}:#{' ' * (3 - i.to_s.chars.count)}#{match[0]}#{' ' * 13}".slice(0,14) + '| ' +
 				"#{match[1]}#{' ' * 40}".slice(0,40) + '| ' +
 				"#{match[2]}#{' ' * 50}".slice(0,50) + "\n"
-
 			end
-
 			select_from_matches_prompt
 		end
 
 	end
 
 	def select_from_matches_prompt
-
 		if self.choice != 'exit'
 			puts "\nPlease enter the number of the airport."
 			gets_and_hand_off(:select_from_matches_input)
 		end
-
 	end
 
 
 	def select_from_matches_input
-
 		if self.choice != 'exit'
 			system "clear"
 			if self.choice.to_i <= 0 || self.choice.to_i > self.matches.length || self.choice.match(/\D+/)
@@ -171,11 +152,9 @@ class AirportFinder::CLI
 				learn_more_prompt
 			end
 		end
-
 	end
 
 	def learn_more_prompt
-
 		if self.choice != 'exit'
 			self.choice = nil if caller[0].include? "select_from_matches_input"
 			self.max_choice = self.airport.details.keys.count + 4
@@ -199,11 +178,9 @@ class AirportFinder::CLI
 
 			gets_and_hand_off(:learn_more_input)
 		end
-
 	end
 
 	def learn_more_input
-
 		if self.choice != 'exit'
 			if self.choice.to_i == self.max_choice
 				print 'Returning to main menu'
@@ -225,14 +202,11 @@ class AirportFinder::CLI
 					self.whoops
 				end
 				learn_more_prompt
-
 			end
-
 		end
 	end
 
 	def display_details
-
 		choice_int = self.choice.to_i
 		category = self.airport.details.keys[choice_int - 1]
 		system "clear"
@@ -249,7 +223,6 @@ class AirportFinder::CLI
 			else
 				puts "#{topic}#{data.join("\n#{" " * (topic.chars.count)}")}"
 			end
-
 		end
 	end
 
@@ -259,11 +232,9 @@ class AirportFinder::CLI
 		self.airport.runways.each.with_index(1) do |rw, i|
 			puts "\n#{i}: #{rw.name} is #{rw.dimensions} and is made of #{rw.surface}"
 		end
-
 	end
 
 	def display_chart
-
 		latlong = airport.details[:Location]["Lat/Long: "][2].split(" / ")
 		lat = latlong[0].to_f
 		long = latlong[1].to_f
@@ -272,16 +243,13 @@ class AirportFinder::CLI
 		slow_ellipsis
 		Launchy.open(chart_url)
 		sleep(1)
-
 	end
 
 ## End locate airport chain
 
 	def gets_and_hand_off(function = false)
-
 		self.choice = gets.strip.downcase
 		send(function) if (function && self.choice != "exit")
-
 	end
 
 	def check_for_float(value)
@@ -296,19 +264,16 @@ class AirportFinder::CLI
 		end
 		system "clear"
 	end
+	
 	def exit
-
-		goodbyes = [
+		puts "\n\n#{[
 			"Roger that!",
 			"Clear skys!",
 			"Don't forget to close your flight plan!",
 			"Any landing you can walk away from...",
 			"Tie downs, check.  Wheel chocks, check.",
 			"Barrel Roll!"
-		]
-
-		puts "\n#{goodbyes.shuffle[0]}\n\n"
-
+		].shuffle[0]}\n\n\n"
 	end
 
 	def is_this_ok?

@@ -24,8 +24,8 @@ class Airport
 	end
 
 	def self.create(identifier, name, url)
-		details_array = Scraper.new.scrape_airport_info(url)
-		Airport.new(identifier, name).tap{ |airport| airport.make_details_hash(details_array) }
+		Scraper.new.scrape_airport_info(identifier, name, url)
+		# Airport.new(identifier, name).tap{ |airport| airport.make_details_hash(details_array) }
 	end
 
 	def self.list_all
