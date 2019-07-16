@@ -5,7 +5,7 @@ class AirportFinder::CLI
 	
 	def radius=(radius)
 		@radius = 20 if @radius.to_i == 0
-		if radius.to_i == 0
+		if radius.to_i <= 0
 			@radius = 20
 		else
 			@radius = radius.to_i
@@ -66,7 +66,7 @@ class AirportFinder::CLI
 	def choose_location_prompt
 		if choice != 'exit'
 			puts "\nPlease enter the city and state OR the zip code to search"
-			puts  "Example: 'Albuquerque, New Mexico'; Example: '90210'"
+			puts  "Example: 'Albuquerque, NM'; Example: '90210'"
 			puts "Or type 'exit' to exit."
 
 			gets_and_hand_off(:choose_location_input)
@@ -78,9 +78,12 @@ class AirportFinder::CLI
 
 		if choice != 'exit'
 			self.location = self.choice
-			case self.location
-			when ""
+			if self.location == ""
+				self.whoops
 				choose_location_prompt
+			elsif (!self.location.match?(/^\d{5}$/) && !self.location.match?(/^[a-zA-Z]+\s*[a-zA-Z]*\,+\s*[a-zA-Z]{2}$/))
+				puts "Please use either a five digit zip code or city name with two letter state abbreviation"
+				puts "as in the following examples: 'Albuquerque, NM'; '90210'"
 			else
 				puts "\nThe location is #{self.location}.  Is this ok?"
 				puts "Please enter 'y' for yes or 'n' for no."
@@ -197,7 +200,7 @@ class AirportFinder::CLI
 
 		if self.choice != 'exit'
 			system "clear"
-			if self.choice.to_i <= 0 || self.choice.to_i > self.matches.length
+			if self.choice.to_i <= 0 || self.choice.to_i > self.matches.length || self.choice.match(/\D+/)
 				self.whoops
 				display_matches
 			else

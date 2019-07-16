@@ -395,6 +395,15 @@
 			}
 		},
 		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 832,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "lib/search.rb",
 			"settings":
 			{
@@ -408,15 +417,6 @@
 			"settings":
 			{
 				"buffer_size": 1406,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/airport.rb",
-			"settings":
-			{
-				"buffer_size": 3399,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -555,7 +555,8 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jason/learning-dev/learn-co/cli-project/airport_finder"
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder",
+		"/home/jason/learning-dev/learn-co/cli-project/airport_finder/bin"
 	],
 	"file_history":
 	[
@@ -663,7 +664,7 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -715,7 +716,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -772,7 +773,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -788,8 +789,8 @@
 						"selection":
 						[
 							[
-								2675,
-								2675
+								4260,
+								4260
 							]
 						],
 						"settings":
@@ -798,14 +799,42 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1800.0,
+						"translation.y": 2652.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								41,
+								41
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "lib/search.rb",
 					"semi_transient": false,
 					"settings":
@@ -817,8 +846,8 @@
 						"selection":
 						[
 							[
-								218,
-								218
+								275,
+								275
 							]
 						],
 						"settings":
@@ -830,11 +859,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "lib/scraper.rb",
 					"semi_transient": false,
 					"settings":
@@ -846,37 +875,8 @@
 						"selection":
 						[
 							[
-								61,
-								61
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "lib/airport.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3399,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2022,
-								2022
+								646,
+								646
 							]
 						],
 						"settings":
@@ -916,7 +916,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
